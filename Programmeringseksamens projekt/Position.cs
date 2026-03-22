@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Programmeringseksamens_projekt
 {
-    internal class Position
+    public class Position
     {
     }
 }
