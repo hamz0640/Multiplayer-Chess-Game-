@@ -6,7 +6,21 @@ using System.Threading.Tasks;
 
 namespace Programmeringseksamens_projekt
 {
-    internal class Enums
+    public class Enums
     {
+        public enum PieceColor
+        {
+            White,
+            Black
+        }
+        public enum PieceType
+        {
+            Pawn,
+            Rook,
+            Knight,
+            Bishop,
+            Queen,
+            King
+        }
     }
 }
