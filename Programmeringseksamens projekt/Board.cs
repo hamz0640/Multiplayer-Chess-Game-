@@ -19,7 +19,7 @@
             public bool BlackCanCastleKingside = false;
             public bool BlackCanCastleQueenside = false;
             (int, int)? EnPassantTarget { get; set; }
-            private bool _isSimulating = false;
+            private bool _isSimulating = false; // flag to tell the “this move is fake (simulation), not a real move
 
 
         public Board()
@@ -100,7 +100,7 @@
                         pawn.HasMoved = true;
                         pawn.Position = (move.To.row, move.To.col);
 
-                        // Remove the captured pawn — same row as From, same col as To
+                        // Remove the captured pawn - same row as From, same col as To
                         Grid[move.From.row, move.To.col] = null;
                         break;
                     case MoveType.Promotion:

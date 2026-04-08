@@ -55,15 +55,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="GameState.cs" />
-    <Compile Include="Ipiece.cs" />
     <Compile Include="King.cs" />
     <Compile Include="Knight.cs" />
     <Compile Include="Move.cs" />
-    <Compile Include="MoveValidator.cs" />
+    <Compile Include="MoveRecord.cs" />
     <Compile Include="Pawn.cs" />
-    <Compile Include="PieceBase.cs" />
-    <Compile Include="Position.cs" />
+    <Compile Include="Piece.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queen.cs" />
