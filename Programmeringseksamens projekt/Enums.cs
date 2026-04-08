@@ -22,5 +22,21 @@ namespace Programmeringseksamens_projekt
             Queen,
             King
         }
+        public enum GameState
+        {
+            Ongoing,
+            Check,
+            Checkmate,
+            Stalemate
+        }
+        public enum  MoveType
+        {
+            Normal,
+            Castling,
+            EnPassant,
+            Promotion,
+            CastlingKingside,
+            CastlingQueenside
+        }
     }
 }
