@@ -3,24 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\Ph03n\\c#\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{FF5C751D-5E71-4E6D-816A-7E35F7AE4CBF}|Programmeringseksamens projekt.csproj|C:\\Users\\Ph03n\\c#\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{FF5C751D-5E71-4E6D-816A-7E35F7AE4CBF}|Programmeringseksamens projekt.csproj|c:\\users\\ph03n\\c#\\multiplayer-chess-game-\\programmeringseksamens projekt\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FF5C751D-5E71-4E6D-816A-7E35F7AE4CBF}|Programmeringseksamens projekt.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FF5C751D-5E71-4E6D-816A-7E35F7AE4CBF}|Programmeringseksamens projekt.csproj|c:\\users\\ph03n\\c#\\multiplayer-chess-game-\\programmeringseksamens projekt\\network.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{FF5C751D-5E71-4E6D-816A-7E35F7AE4CBF}|Programmeringseksamens projekt.csproj|C:\\Users\\Ph03n\\c#\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\network.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FF5C751D-5E71-4E6D-816A-7E35F7AE4CBF}|Programmeringseksamens projekt.csproj|solutionrelative:network.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FF5C751D-5E71-4E6D-816A-7E35F7AE4CBF}|Programmeringseksamens projekt.csproj|c:\\users\\ph03n\\c#\\multiplayer-chess-game-\\programmeringseksamens projekt\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{FF5C751D-5E71-4E6D-816A-7E35F7AE4CBF}|Programmeringseksamens projekt.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FF5C751D-5E71-4E6D-816A-7E35F7AE4CBF}|Programmeringseksamens projekt.csproj|C:\\Users\\Ph03n\\c#\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\move.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FF5C751D-5E71-4E6D-816A-7E35F7AE4CBF}|Programmeringseksamens projekt.csproj|solutionrelative:move.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{FF5C751D-5E71-4E6D-816A-7E35F7AE4CBF}|Programmeringseksamens projekt.csproj|c:\\users\\ph03n\\c#\\multiplayer-chess-game-\\programmeringseksamens projekt\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF5C751D-5E71-4E6D-816A-7E35F7AE4CBF}|Programmeringseksamens projekt.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{FF5C751D-5E71-4E6D-816A-7E35F7AE4CBF}|Programmeringseksamens projekt.csproj|C:\\Users\\Ph03n\\c#\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\board.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FF5C751D-5E71-4E6D-816A-7E35F7AE4CBF}|Programmeringseksamens projekt.csproj|solutionrelative:board.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF5C751D-5E71-4E6D-816A-7E35F7AE4CBF}|Programmeringseksamens projekt.csproj|c:\\users\\ph03n\\c#\\multiplayer-chess-game-\\programmeringseksamens projekt\\moverecord.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF5C751D-5E71-4E6D-816A-7E35F7AE4CBF}|Programmeringseksamens projekt.csproj|solutionrelative:moverecord.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF5C751D-5E71-4E6D-816A-7E35F7AE4CBF}|Programmeringseksamens projekt.csproj|C:\\Users\\Ph03n\\c#\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{FF5C751D-5E71-4E6D-816A-7E35F7AE4CBF}|Programmeringseksamens projekt.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -44,7 +52,7 @@
         },
         {
           "DockedWidth": 456,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -60,20 +68,46 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Ph03n\\c#\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\Ph03n\\c#\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAmwBUAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-09T07:30:17.413Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "MoveRecord.cs",
+              "DocumentMoniker": "C:\\Users\\Ph03n\\c#\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\MoveRecord.cs",
+              "RelativeDocumentMoniker": "MoveRecord.cs",
+              "ToolTip": "C:\\Users\\Ph03n\\c#\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\MoveRecord.cs",
+              "RelativeToolTip": "MoveRecord.cs",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAYwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-09T07:26:01.991Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
               "Title": "Network.cs",
               "DocumentMoniker": "C:\\Users\\Ph03n\\c#\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\Network.cs",
               "RelativeDocumentMoniker": "Network.cs",
               "ToolTip": "C:\\Users\\Ph03n\\c#\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\Network.cs",
               "RelativeToolTip": "Network.cs",
-              "ViewState": "AQIAAA4AAAAAAAAAAAAQwF4AAAAVAAAA",
+              "ViewState": "AQIAACAAAAAAAAAAAAAgwCoAAAAVAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-09T07:06:33.094Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "Move.cs",
               "DocumentMoniker": "C:\\Users\\Ph03n\\c#\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\Move.cs",
               "RelativeDocumentMoniker": "Move.cs",
@@ -92,7 +126,7 @@
               "RelativeDocumentMoniker": "Form1.cs",
               "ToolTip": "C:\\Users\\Ph03n\\c#\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\Form1.cs",
               "RelativeToolTip": "Form1.cs",
-              "ViewState": "AQIAADoAAAAAAAAAAAAuwD0AAAAZAAAA",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAAA8AAAAdAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-09T06:30:48.914Z",
               "EditorCaption": ""
@@ -105,22 +139,21 @@
               "RelativeDocumentMoniker": "Board.cs",
               "ToolTip": "C:\\Users\\Ph03n\\c#\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\Board.cs",
               "RelativeToolTip": "Board.cs",
-              "ViewState": "AQIAAAwAAAAAAAAAAAAAABMAAAA4AAAA",
+              "ViewState": "AQIAAA8AAAAAAAAAAAA1wBUAAAA5AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-20T13:24:30.44Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "Form1.cs [Design]",
               "DocumentMoniker": "C:\\Users\\Ph03n\\c#\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",
               "ToolTip": "C:\\Users\\Ph03n\\c#\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\Form1.cs [Design]",
               "RelativeToolTip": "Form1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-19T19:56:03.472Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2026-03-19T19:56:03.472Z"
             }
           ]
         }

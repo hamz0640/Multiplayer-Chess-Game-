@@ -14,6 +14,7 @@ namespace Programmeringseksamens_projekt
         private TcpListener Listener;
         private TcpClient Client;
         private NetworkStream Stream;
+        public bool IsStarted { get; private set; } = false;
         public Network()
         {
 
@@ -23,6 +24,7 @@ namespace Programmeringseksamens_projekt
         {
             Listener = new TcpListener(IPAddress.Any, 2026);
             Listener.Start();
+            IsStarted = true;
 
             Debug.WriteLine("Waiting for connection...");
             Client = await Listener.AcceptTcpClientAsync();
@@ -38,6 +40,7 @@ namespace Programmeringseksamens_projekt
             await Client.ConnectAsync(ip, 2026);
 
             Stream = Client.GetStream();
+            IsStarted = true;
 
             Debug.WriteLine("Connected to server.");
             return;

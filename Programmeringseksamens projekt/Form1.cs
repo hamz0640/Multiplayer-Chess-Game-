@@ -16,6 +16,7 @@ namespace Programmeringseksamens_projekt
         Dictionary<(int, int), Panel> boardPanels = new Dictionary<(int, int), Panel>();
         Dictionary<(int, int), Panel> hightlightPanels = new Dictionary<(int, int), Panel>();
         Network network = new Network();
+        Board board = new Board();
 
         const int SQUARE_SIZE = 43;
 
@@ -59,6 +60,11 @@ namespace Programmeringseksamens_projekt
 
         private void joinButton_Click(object sender, EventArgs e)
         {
+            if (network.IsStarted)
+            {
+                return;
+            }
+
             string ipString = ipEnterField.Text;
             IPAddress ip = IPAddress.None;
 

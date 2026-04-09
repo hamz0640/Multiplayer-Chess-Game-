@@ -21,7 +21,7 @@
             (int, int)? EnPassantTarget { get; set; }
             private bool _isSimulating = false; // flag to tell the “this move is fake (simulation), not a real move
 
-
+        
         public Board()
             {
                 MoveHistory = new List<MoveRecord>();
