@@ -18,3 +18,4 @@ C:\Users\Ph03n\c#\Multiplayer-Chess-Game-\Programmeringseksamens projekt\obj\Deb
 C:\Users\Ph03n\c#\Multiplayer-Chess-Game-\Programmeringseksamens projekt\obj\Debug\Programmeringseksamens projekt.exe
 C:\Users\Ph03n\c#\Multiplayer-Chess-Game-\Programmeringseksamens projekt\obj\Debug\Programmeringseksamens projekt.pdb
 C:\Users\Ph03n\c#\Multiplayer-Chess-Game-\Programmeringseksamens projekt\obj\Debug\Programmeringseksamens_projekt.Form1.resources
+C:\Users\hamza\OneDrive - Frederikshavn Kommune\Dokumenter\Programmering eksamensprojekt\Multiplayer-Chess-Game-\Programmeringseksamens projekt\obj\Debug\Programmeringseksamens_projekt.Form1.resources
