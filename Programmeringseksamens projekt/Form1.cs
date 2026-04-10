@@ -8,6 +8,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace Programmeringseksamens_projekt
 {
@@ -15,6 +16,10 @@ namespace Programmeringseksamens_projekt
     {
         Dictionary<(int, int), Panel> boardPanels = new Dictionary<(int, int), Panel>();
         Dictionary<(int, int), Panel> hightlightPanels = new Dictionary<(int, int), Panel>();
+        Dictionary<(int, int), PictureBox> Pieces = new Dictionary<(int, int), PictureBox>();
+
+        (int, int)? selectedPiece = null; 
+        
         Network network = new Network();
         Board board = new Board();
 
@@ -23,39 +28,134 @@ namespace Programmeringseksamens_projekt
         public Form1()
         {
             InitializeComponent();
+            InitializePieces();
 
+            board.SetupStartingPosition();
+            foreach (Control control in Controls)
+            {
+                control.MouseClick += HandleClick;
+            }
+        }
+
+        private void HandleClick(object sender, MouseEventArgs e)
+        {
+            int x = e.X + ((Control)sender).Location.X;
+            int y = e.Y + ((Control)sender).Location.Y;
+
+            x = (x - 11) / SQUARE_SIZE;
+            y = 7 - (y - 11) / SQUARE_SIZE;
+
+            if (x >= 0 && x < 8 && y >= 0 && y < 8)
+            {
+                if (selectedPiece != null)
+                {
+                    MovePiece(
+                        selectedPiece.Value.Item1,
+                        selectedPiece.Value.Item2,
+                        x,
+                        y
+                    );
+                    selectedPiece = null;
+                }
+                else
+                {
+                    if (Pieces.ContainsKey((x, y)))
+                    {
+                        selectedPiece = (x, y);
+                    }
+                }
+            }
+        }
+
+        private void InitializePieces()
+        {
             for (int y = 7; y >= 0; y--)
             {
                 for (int x = 0; x < 8; x++)
                 {
                     Panel panel = new Panel();
                     panel.Size = new Size(SQUARE_SIZE, SQUARE_SIZE);
-                    panel.Location = new Point(11 + x * SQUARE_SIZE, 11 + y * SQUARE_SIZE);
-                    if ((x + (y % 2 == 0 ? 0 : 1)) % 2 == 0)
-                        panel.BackColor = Color.SandyBrown;
-                    else
-                        panel.BackColor = Color.Sienna;
+                    panel.Location = new Point(11 + x * SQUARE_SIZE, 11 + (7 - y) * SQUARE_SIZE);
+                    panel.BackColor = GetSquareColor(x, y);
 
                     boardPanels[(x, y)] = panel;
                     Controls.Add(panel);
-
-
-                    Panel hightlightPanel = new Panel();
-                    hightlightPanel.Size = new Size(SQUARE_SIZE, SQUARE_SIZE);
-                    hightlightPanel.Location = new Point(11 + x * SQUARE_SIZE, 11 + y * SQUARE_SIZE);
-                    if ((x + (y % 2 == 0 ? 0 : 1)) % 2 == 0)
-                        hightlightPanel.BackColor = Color.Peru;
-                    else
-                        hightlightPanel.BackColor = Color.SaddleBrown;
-
-                    hightlightPanels[(x, y)] = hightlightPanel;
-                    hightlightPanel.Hide();
-
-                    Controls.Add(hightlightPanel);
                 }
             }
 
+            for (int x = 0; x < 8; x++)
+            {
+                AddPiece(x, 1, Properties.Resources.wP);
+                AddPiece(x, 6, Properties.Resources.bP);
+            }
 
+            AddPiece(0, 0, Properties.Resources.wR);
+            AddPiece(1, 0, Properties.Resources.wN);
+            AddPiece(2, 0, Properties.Resources.wB);
+            AddPiece(3, 0, Properties.Resources.wQ);
+            AddPiece(4, 0, Properties.Resources.wK);
+            AddPiece(5, 0, Properties.Resources.wB);
+            AddPiece(6, 0, Properties.Resources.wN);
+            AddPiece(7, 0, Properties.Resources.wR);
+
+            AddPiece(0, 7, Properties.Resources.bR);
+            AddPiece(1, 7, Properties.Resources.bN);
+            AddPiece(2, 7, Properties.Resources.bB);
+            AddPiece(3, 7, Properties.Resources.bQ);
+            AddPiece(4, 7, Properties.Resources.bK);
+            AddPiece(5, 7, Properties.Resources.bB);
+            AddPiece(6, 7, Properties.Resources.bN);
+            AddPiece(7, 7, Properties.Resources.bR);
+        }
+
+        private bool SquareIsWhite(int x, int y)
+        {
+            return ((x + (y % 2 == 0 ? 1 : 0)) % 2 == 0);
+        }
+
+        private Color GetSquareColor(int x, int y)
+        {
+            if (SquareIsWhite(x, y))
+                return Color.SandyBrown;
+            else
+                return Color.Sienna;
+        }
+
+        private void MovePiece(int x1, int y1, int x2, int y2)
+        {
+            PictureBox piece = Pieces[(x1, y1)];
+            Pieces.Remove((x1, y1));
+            if (Pieces.ContainsKey((x2, y2)))
+            {
+                Controls.Remove(Pieces[(x2, y2)]);
+            }
+
+            Pieces[(x2, y2)] = piece;
+
+            piece.Location = new Point(
+                11 + x2 * SQUARE_SIZE,
+                11 + (7 - y2) * SQUARE_SIZE
+            );
+            piece.BackColor = GetSquareColor(x2, y2);
+        }
+
+        private PictureBox AddPiece(int x, int y, Image pieceImage)
+        {
+            PictureBox piece = new PictureBox();
+            piece.Image = pieceImage;
+            piece.Size = new Size(SQUARE_SIZE, SQUARE_SIZE);
+            piece.Location = new Point(
+                11 + x * SQUARE_SIZE,
+                11 + (7 - y) * SQUARE_SIZE
+            );
+            piece.SizeMode = PictureBoxSizeMode.CenterImage;
+            piece.BackColor = GetSquareColor(x, y);
+
+            Controls.Add(piece);
+            piece.BringToFront();
+            Pieces[(x, y)] = piece;
+
+            return piece;
         }
 
         private void joinButton_Click(object sender, EventArgs e)

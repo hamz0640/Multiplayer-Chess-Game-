@@ -1,38 +1,34 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\hamza\\OneDrive - Frederikshavn Kommune\\Dokumenter\\Programmering eksamensprojekt\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\",
+  "WorkspaceRootPath": "C:\\Users\\Ph03n\\c#\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{FF5C751D-5E71-4E6D-816A-7E35F7AE4CBF}|Programmeringseksamens projekt.csproj|c:\\users\\hamza\\onedrive - frederikshavn kommune\\dokumenter\\programmering eksamensprojekt\\multiplayer-chess-game-\\programmeringseksamens projekt\\enums.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FF5C751D-5E71-4E6D-816A-7E35F7AE4CBF}|Programmeringseksamens projekt.csproj|solutionrelative:enums.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FF5C751D-5E71-4E6D-816A-7E35F7AE4CBF}|Programmeringseksamens projekt.csproj|c:\\users\\hamza\\onedrive - frederikshavn kommune\\dokumenter\\programmering eksamensprojekt\\multiplayer-chess-game-\\programmeringseksamens projekt\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{FF5C751D-5E71-4E6D-816A-7E35F7AE4CBF}|Programmeringseksamens projekt.csproj|C:\\Users\\Ph03n\\c#\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FF5C751D-5E71-4E6D-816A-7E35F7AE4CBF}|Programmeringseksamens projekt.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FF5C751D-5E71-4E6D-816A-7E35F7AE4CBF}|Programmeringseksamens projekt.csproj|C:\\Users\\hamza\\OneDrive - Frederikshavn Kommune\\Dokumenter\\Programmering eksamensprojekt\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\network.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FF5C751D-5E71-4E6D-816A-7E35F7AE4CBF}|Programmeringseksamens projekt.csproj|solutionrelative:network.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FF5C751D-5E71-4E6D-816A-7E35F7AE4CBF}|Programmeringseksamens projekt.csproj|C:\\Users\\hamza\\OneDrive - Frederikshavn Kommune\\Dokumenter\\Programmering eksamensprojekt\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\move.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{FF5C751D-5E71-4E6D-816A-7E35F7AE4CBF}|Programmeringseksamens projekt.csproj|C:\\Users\\Ph03n\\c#\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\move.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FF5C751D-5E71-4E6D-816A-7E35F7AE4CBF}|Programmeringseksamens projekt.csproj|solutionrelative:move.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FF5C751D-5E71-4E6D-816A-7E35F7AE4CBF}|Programmeringseksamens projekt.csproj|C:\\Users\\hamza\\OneDrive - Frederikshavn Kommune\\Dokumenter\\Programmering eksamensprojekt\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FF5C751D-5E71-4E6D-816A-7E35F7AE4CBF}|Programmeringseksamens projekt.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FF5C751D-5E71-4E6D-816A-7E35F7AE4CBF}|Programmeringseksamens projekt.csproj|C:\\Users\\hamza\\OneDrive - Frederikshavn Kommune\\Dokumenter\\Programmering eksamensprojekt\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\board.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{FF5C751D-5E71-4E6D-816A-7E35F7AE4CBF}|Programmeringseksamens projekt.csproj|C:\\Users\\Ph03n\\c#\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\board.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FF5C751D-5E71-4E6D-816A-7E35F7AE4CBF}|Programmeringseksamens projekt.csproj|solutionrelative:board.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FF5C751D-5E71-4E6D-816A-7E35F7AE4CBF}|Programmeringseksamens projekt.csproj|C:\\Users\\hamza\\OneDrive - Frederikshavn Kommune\\Dokumenter\\Programmering eksamensprojekt\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\moverecord.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{FF5C751D-5E71-4E6D-816A-7E35F7AE4CBF}|Programmeringseksamens projekt.csproj|C:\\Users\\Ph03n\\c#\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\moverecord.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FF5C751D-5E71-4E6D-816A-7E35F7AE4CBF}|Programmeringseksamens projekt.csproj|solutionrelative:moverecord.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FF5C751D-5E71-4E6D-816A-7E35F7AE4CBF}|Programmeringseksamens projekt.csproj|C:\\Users\\hamza\\OneDrive - Frederikshavn Kommune\\Dokumenter\\Programmering eksamensprojekt\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{FF5C751D-5E71-4E6D-816A-7E35F7AE4CBF}|Programmeringseksamens projekt.csproj|C:\\Users\\Ph03n\\c#\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF5C751D-5E71-4E6D-816A-7E35F7AE4CBF}|Programmeringseksamens projekt.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF5C751D-5E71-4E6D-816A-7E35F7AE4CBF}|Programmeringseksamens projekt.csproj|c:\\users\\ph03n\\c#\\multiplayer-chess-game-\\programmeringseksamens projekt\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{FF5C751D-5E71-4E6D-816A-7E35F7AE4CBF}|Programmeringseksamens projekt.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF5C751D-5E71-4E6D-816A-7E35F7AE4CBF}|Programmeringseksamens projekt.csproj|C:\\Users\\Ph03n\\c#\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\network.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF5C751D-5E71-4E6D-816A-7E35F7AE4CBF}|Programmeringseksamens projekt.csproj|solutionrelative:network.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -56,8 +52,22 @@
         },
         {
           "DockedWidth": 456,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "C:\\Users\\Ph03n\\c#\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\Form1.cs",
+              "RelativeDocumentMoniker": "Form1.cs",
+              "ToolTip": "C:\\Users\\Ph03n\\c#\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\Form1.cs",
+              "RelativeToolTip": "Form1.cs",
+              "ViewState": "AQIAAEQAAAAAAAAAAAAIwIEAAAAyAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-09T06:30:48.914Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
@@ -72,100 +82,80 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Enums.cs",
-              "DocumentMoniker": "C:\\Users\\hamza\\OneDrive - Frederikshavn Kommune\\Dokumenter\\Programmering eksamensprojekt\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\Enums.cs",
-              "RelativeDocumentMoniker": "Enums.cs",
-              "ToolTip": "C:\\Users\\hamza\\OneDrive - Frederikshavn Kommune\\Dokumenter\\Programmering eksamensprojekt\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\Enums.cs",
-              "RelativeToolTip": "Enums.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Ph03n\\c#\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\Ph03n\\c#\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAUwBQAAAApAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-09T07:43:56.445Z",
+              "WhenOpened": "2026-04-09T07:30:17.413Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MoveRecord.cs",
+              "DocumentMoniker": "C:\\Users\\Ph03n\\c#\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\MoveRecord.cs",
+              "RelativeDocumentMoniker": "MoveRecord.cs",
+              "ToolTip": "C:\\Users\\Ph03n\\c#\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\MoveRecord.cs",
+              "RelativeToolTip": "MoveRecord.cs",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAzwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-09T07:26:01.991Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Network.cs",
+              "DocumentMoniker": "C:\\Users\\Ph03n\\c#\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\Network.cs",
+              "RelativeDocumentMoniker": "Network.cs",
+              "ToolTip": "C:\\Users\\Ph03n\\c#\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\Network.cs",
+              "RelativeToolTip": "Network.cs",
+              "ViewState": "AQIAACAAAAAAAAAAAAAgwCoAAAAVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-09T07:06:33.094Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Form1.cs",
-              "DocumentMoniker": "C:\\Users\\hamza\\OneDrive - Frederikshavn Kommune\\Dokumenter\\Programmering eksamensprojekt\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\Form1.cs",
-              "RelativeDocumentMoniker": "Form1.cs",
-              "ToolTip": "C:\\Users\\hamza\\OneDrive - Frederikshavn Kommune\\Dokumenter\\Programmering eksamensprojekt\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\Form1.cs",
-              "RelativeToolTip": "Form1.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAAA8AAAAdAAAAAAAAAA==",
+              "Title": "Move.cs",
+              "DocumentMoniker": "C:\\Users\\Ph03n\\c#\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\Move.cs",
+              "RelativeDocumentMoniker": "Move.cs",
+              "ToolTip": "C:\\Users\\Ph03n\\c#\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\Move.cs",
+              "RelativeToolTip": "Move.cs",
+              "ViewState": "AQIAAAEAAAAAAAAAAAAYwAgAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-09T06:30:48.914Z",
+              "WhenOpened": "2026-04-09T06:41:32.764Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\hamza\\OneDrive - Frederikshavn Kommune\\Dokumenter\\Programmering eksamensprojekt\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\hamza\\OneDrive - Frederikshavn Kommune\\Dokumenter\\Programmering eksamensprojekt\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAAAUAAAAAAAAAAAAmwBUAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-09T07:30:17.413Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "MoveRecord.cs",
-              "DocumentMoniker": "C:\\Users\\hamza\\OneDrive - Frederikshavn Kommune\\Dokumenter\\Programmering eksamensprojekt\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\MoveRecord.cs",
-              "RelativeDocumentMoniker": "MoveRecord.cs",
-              "ToolTip": "C:\\Users\\hamza\\OneDrive - Frederikshavn Kommune\\Dokumenter\\Programmering eksamensprojekt\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\MoveRecord.cs",
-              "RelativeToolTip": "MoveRecord.cs",
-              "ViewState": "AQIAAAwAAAAAAAAAAAAYwAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-09T07:26:01.991Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Network.cs",
-              "DocumentMoniker": "C:\\Users\\hamza\\OneDrive - Frederikshavn Kommune\\Dokumenter\\Programmering eksamensprojekt\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\Network.cs",
-              "RelativeDocumentMoniker": "Network.cs",
-              "ToolTip": "C:\\Users\\hamza\\OneDrive - Frederikshavn Kommune\\Dokumenter\\Programmering eksamensprojekt\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\Network.cs",
-              "RelativeToolTip": "Network.cs",
-              "ViewState": "AQIAACAAAAAAAAAAAAAgwCoAAAAVAAAA",
+              "Title": "Board.cs",
+              "DocumentMoniker": "C:\\Users\\Ph03n\\c#\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\Board.cs",
+              "RelativeDocumentMoniker": "Board.cs",
+              "ToolTip": "C:\\Users\\Ph03n\\c#\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\Board.cs",
+              "RelativeToolTip": "Board.cs",
+              "ViewState": "AQIAAAYBAAAAAAAAAAAnwA8BAAAYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-09T07:06:33.094Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Move.cs",
-              "DocumentMoniker": "C:\\Users\\hamza\\OneDrive - Frederikshavn Kommune\\Dokumenter\\Programmering eksamensprojekt\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\Move.cs",
-              "RelativeDocumentMoniker": "Move.cs",
-              "ToolTip": "C:\\Users\\hamza\\OneDrive - Frederikshavn Kommune\\Dokumenter\\Programmering eksamensprojekt\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\Move.cs",
-              "RelativeToolTip": "Move.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-09T06:41:32.764Z"
+              "WhenOpened": "2026-03-20T13:24:30.44Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "Board.cs",
-              "DocumentMoniker": "C:\\Users\\hamza\\OneDrive - Frederikshavn Kommune\\Dokumenter\\Programmering eksamensprojekt\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\Board.cs",
-              "RelativeDocumentMoniker": "Board.cs",
-              "ToolTip": "C:\\Users\\hamza\\OneDrive - Frederikshavn Kommune\\Dokumenter\\Programmering eksamensprojekt\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\Board.cs",
-              "RelativeToolTip": "Board.cs",
-              "ViewState": "AQIAAA8AAAAAAAAAAAA1wBUAAAA5AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-20T13:24:30.44Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
               "Title": "Form1.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\hamza\\OneDrive - Frederikshavn Kommune\\Dokumenter\\Programmering eksamensprojekt\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\Form1.cs",
+              "DocumentMoniker": "C:\\Users\\Ph03n\\c#\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",
               "ToolTip": "C:\\Users\\Ph03n\\c#\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\Form1.cs [Design]",
-              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\Ph03n\\c#\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\Form1.cs [Design]",
+              "RelativeToolTip": "Form1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-19T19:56:03.472Z"
+              "WhenOpened": "2026-03-19T19:56:03.472Z",
+              "EditorCaption": " [Design]"
             }
           ]
         }
