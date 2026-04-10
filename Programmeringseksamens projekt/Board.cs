@@ -22,7 +22,7 @@
             private bool _isSimulating = false; // flag to tell the “this move is fake (simulation), not a real move
 
         
-        public Board()
+            public Board()
             {
                 MoveHistory = new List<MoveRecord>();
                 CurrentTurn = PieceColor.White;
@@ -31,7 +31,7 @@
 
             public void ApplyMove(Move move)
             {
-                MoveHistory.Add(new MoveRecord(
+                    MoveHistory.Add(new MoveRecord(
                     move,
                     Grid[move.To.row, move.To.col],
                     Grid[move.From.row, move.From.col].HasMoved,
@@ -142,162 +142,162 @@
             }
         }
 
-            public void UndoMove()
+        public void UndoMove()
+        {
+            if (MoveHistory.Count == 0) return;
+
+            MoveRecord record = MoveHistory.Last();
+            MoveHistory.RemoveAt(MoveHistory.Count - 1);
+            Move move = record.Move;
+
+            switch (move.Type)
             {
-                if (MoveHistory.Count == 0) return;
+                case MoveType.Normal:
+                case MoveType.Promotion:
+                    Piece piece = Grid[move.To.row, move.To.col];
+                    Grid[move.From.row, move.From.col] = piece;
+                    Grid[move.To.row, move.To.col] = record.CapturedPiece;
+                    piece.Position = (move.From.row, move.From.col);
+                    piece.HasMoved = record.PieceHadMoved;
+                    break;
 
-                MoveRecord record = MoveHistory.Last();
-                MoveHistory.RemoveAt(MoveHistory.Count - 1);
-                Move move = record.Move;
+                case MoveType.EnPassant:
+                    Piece epPawn = Grid[move.To.row, move.To.col];
+                    Grid[move.From.row, move.From.col] = epPawn;
+                    Grid[move.To.row, move.To.col] = null;
+                    epPawn.Position = (move.From.row, move.From.col);
+                    // Restore captured pawn on the square it was on
+                    PieceColor capturedColor = epPawn.Color == PieceColor.White ? PieceColor.Black : PieceColor.White;
+                    Grid[move.From.row, move.To.col] = new Pawn(capturedColor, (move.From.row, move.To.col));
+                    break;
 
-                switch (move.Type)
-                {
-                    case MoveType.Normal:
-                    case MoveType.Promotion:
-                        Piece piece = Grid[move.To.row, move.To.col];
-                        Grid[move.From.row, move.From.col] = piece;
-                        Grid[move.To.row, move.To.col] = record.CapturedPiece;
-                        piece.Position = (move.From.row, move.From.col);
-                        piece.HasMoved = record.PieceHadMoved;
-                        break;
+                case MoveType.CastlingKingside:
+                    Piece ksKing = Grid[move.From.row, 6];
+                    Piece ksRook = Grid[move.From.row, 5];
+                    Grid[move.From.row, 4] = ksKing;
+                    Grid[move.From.row, 6] = null;
+                    Grid[move.From.row, 7] = ksRook;
+                    Grid[move.From.row, 5] = null;
+                    ksKing.Position = (move.From.row, 4);
+                    ksRook.Position = (move.From.row, 7);
+                    ksKing.HasMoved = false;
+                    ksRook.HasMoved = false;
+                    break;
 
-                    case MoveType.EnPassant:
-                        Piece epPawn = Grid[move.To.row, move.To.col];
-                        Grid[move.From.row, move.From.col] = epPawn;
-                        Grid[move.To.row, move.To.col] = null;
-                        epPawn.Position = (move.From.row, move.From.col);
-                        // Restore captured pawn on the square it was on
-                        PieceColor capturedColor = epPawn.Color == PieceColor.White ? PieceColor.Black : PieceColor.White;
-                        Grid[move.From.row, move.To.col] = new Pawn(capturedColor, (move.From.row, move.To.col));
-                        break;
-
-                    case MoveType.CastlingKingside:
-                        Piece ksKing = Grid[move.From.row, 6];
-                        Piece ksRook = Grid[move.From.row, 5];
-                        Grid[move.From.row, 4] = ksKing;
-                        Grid[move.From.row, 6] = null;
-                        Grid[move.From.row, 7] = ksRook;
-                        Grid[move.From.row, 5] = null;
-                        ksKing.Position = (move.From.row, 4);
-                        ksRook.Position = (move.From.row, 7);
-                        ksKing.HasMoved = false;
-                        ksRook.HasMoved = false;
-                        break;
-
-                    case MoveType.CastlingQueenside:
-                        Piece qsKing = Grid[move.From.row, 2];
-                        Piece qsRook = Grid[move.From.row, 3];
-                        Grid[move.From.row, 4] = qsKing;
-                        Grid[move.From.row, 2] = null;
-                        Grid[move.From.row, 0] = qsRook;
-                        Grid[move.From.row, 3] = null;
-                        qsKing.Position = (move.From.row, 4);
-                        qsRook.Position = (move.From.row, 0);
-                        qsKing.HasMoved = false;
-                        qsRook.HasMoved = false;
-                        break;
-                }
-
-                // Restore all previous board state
-                EnPassantTarget = record.PreviousEnPassantTarget;
-                WhiteCanCastleKingside = record.PreviousWhiteCanCastleKingside;
-                WhiteCanCastleQueenside = record.PreviousWhiteCanCastleQueenside;
-                BlackCanCastleKingside = record.PreviousBlackCanCastleKingside;
-                BlackCanCastleQueenside = record.PreviousBlackCanCastleQueenside;
-
-                // Flip turn back
-                CurrentTurn = CurrentTurn == PieceColor.White ? PieceColor.Black : PieceColor.White;
+                case MoveType.CastlingQueenside:
+                    Piece qsKing = Grid[move.From.row, 2];
+                    Piece qsRook = Grid[move.From.row, 3];
+                    Grid[move.From.row, 4] = qsKing;
+                    Grid[move.From.row, 2] = null;
+                    Grid[move.From.row, 0] = qsRook;
+                    Grid[move.From.row, 3] = null;
+                    qsKing.Position = (move.From.row, 4);
+                    qsRook.Position = (move.From.row, 0);
+                    qsKing.HasMoved = false;
+                    qsRook.HasMoved = false;
+                    break;
             }
 
-            public bool IsInCheck(PieceColor pieceColor)
+            // Restore all previous board state
+            EnPassantTarget = record.PreviousEnPassantTarget;
+            WhiteCanCastleKingside = record.PreviousWhiteCanCastleKingside;
+            WhiteCanCastleQueenside = record.PreviousWhiteCanCastleQueenside;
+            BlackCanCastleKingside = record.PreviousBlackCanCastleKingside;
+            BlackCanCastleQueenside = record.PreviousBlackCanCastleQueenside;
+
+            // Flip turn back
+            CurrentTurn = CurrentTurn == PieceColor.White ? PieceColor.Black : PieceColor.White;
+        }
+
+        public bool IsInCheck(PieceColor pieceColor)
+        {
+            (int row, int col) kingPos = (-1, -1);
+            foreach (Piece p in Grid)
+                if (p != null && p is King && p.Color == pieceColor)
+                    kingPos = p.Position;
+
+            PieceColor enemyColor = pieceColor == PieceColor.White ? PieceColor.Black : PieceColor.White;
+
+            return GetRawMoves(enemyColor).Any(m => m.To == kingPos);
+        }
+
+        public void SetupStartingPosition()
+        {
+            Grid = new Piece[8, 8];
+
+            for (int col = 0; col < 8; col++)
             {
-                (int row, int col) kingPos = (-1, -1);
-                foreach (Piece p in Grid)
-                    if (p != null && p is King && p.Color == pieceColor)
-                        kingPos = p.Position;
-
-                PieceColor enemyColor = pieceColor == PieceColor.White ? PieceColor.Black : PieceColor.White;
-
-                return GetRawMoves(enemyColor).Any(m => m.To == kingPos);
+                Grid[1, col] = new Pawn(PieceColor.White, (1, col));
+                Grid[6, col] = new Pawn(PieceColor.Black, (6, col));
             }
 
-            public void SetupStartingPosition()
-            {
-                Grid = new Piece[8, 8];
+            // White Pieces
+            Grid[0, 0] = new Rook(PieceColor.White, (0, 0));
+            Grid[0, 7] = new Rook(PieceColor.White, (0, 7));
 
+            Grid[0, 1] = new Knight(PieceColor.White, (0, 1));
+            Grid[0, 6] = new Knight(PieceColor.White, (0, 6));
+
+            Grid[0, 2] = new Bishop(PieceColor.White, (0, 2));
+            Grid[0, 5] = new Bishop(PieceColor.White, (0, 5));
+
+            Grid[0, 3] = new Queen(PieceColor.White, (0, 3));
+            Grid[0, 4] = new King(PieceColor.White, (0, 4));
+
+            // Black Pieces 
+            Grid[7, 7] = new Rook(PieceColor.Black, (7, 7));
+            Grid[7, 0] = new Rook(PieceColor.Black, (7, 0));
+
+            Grid[7, 1] = new Knight(PieceColor.Black, (7, 1));
+            Grid[7, 6] = new Knight(PieceColor.Black, (7, 6));
+
+            Grid[7, 2] = new Bishop(PieceColor.Black, (7, 2));
+            Grid[7, 5] = new Bishop(PieceColor.Black, (7, 5));
+
+            Grid[7, 3] = new Queen(PieceColor.Black, (7, 3));
+            Grid[7, 4] = new King(PieceColor.Black, (7, 4));
+
+            // Castling starts as available
+            WhiteCanCastleKingside = true;
+            WhiteCanCastleQueenside = true;
+            BlackCanCastleKingside = true;
+            BlackCanCastleQueenside = true;
+        }
+
+    public bool IsInBounds(int row, int col) => row >= 0 && row < 8 && col >= 0 && col < 8;
+
+    public bool IsEmpty(int row, int col) => Grid[row, col] == null;
+
+
+    public List<Move> GetAllLegalMoves(PieceColor pieceColor)
+    {
+        List<Move> legal = new List<Move>();
+        _isSimulating = true;
+        foreach (Move m in GetRawMoves(pieceColor))
+        {
+            ApplyMove(m);
+            if (!IsInCheck(pieceColor))
+                legal.Add(m);
+            UndoMove();
+        }
+        _isSimulating = false;
+        return legal;
+    }
+
+    public List<Move> GetRawMoves(PieceColor color) {
+            List<Move> rawMoves = new List<Move>();
+            for (int row = 0; row < 8; row++)
+            {
                 for (int col = 0; col < 8; col++)
                 {
-                    Grid[1, col] = new Pawn(PieceColor.White, (1, col));
-                    Grid[6, col] = new Pawn(PieceColor.Black, (6, col));
-                }
-
-                // White Pieces
-                Grid[0, 0] = new Rook(PieceColor.White, (0, 0));
-                Grid[0, 7] = new Rook(PieceColor.White, (0, 7));
-
-                Grid[0, 1] = new Knight(PieceColor.White, (0, 1));
-                Grid[0, 6] = new Knight(PieceColor.White, (0, 6));
-
-                Grid[0, 2] = new Bishop(PieceColor.White, (0, 2));
-                Grid[0, 5] = new Bishop(PieceColor.White, (0, 5));
-
-                Grid[0, 3] = new Queen(PieceColor.White, (0, 3));
-                Grid[0, 4] = new King(PieceColor.White, (0, 4));
-
-                // Black Pieces 
-                Grid[7, 7] = new Rook(PieceColor.Black, (7, 7));
-                Grid[7, 0] = new Rook(PieceColor.Black, (7, 0));
-
-                Grid[7, 1] = new Knight(PieceColor.Black, (7, 1));
-                Grid[7, 6] = new Knight(PieceColor.Black, (7, 6));
-
-                Grid[7, 2] = new Bishop(PieceColor.Black, (7, 2));
-                Grid[7, 5] = new Bishop(PieceColor.Black, (7, 5));
-
-                Grid[7, 3] = new Queen(PieceColor.Black, (7, 3));
-                Grid[7, 4] = new King(PieceColor.Black, (7, 4));
-
-                // Castling starts as available
-                WhiteCanCastleKingside = true;
-                WhiteCanCastleQueenside = true;
-                BlackCanCastleKingside = true;
-                BlackCanCastleQueenside = true;
-            }
-
-        public bool IsInBounds(int row, int col) => row >= 0 && row < 8 && col >= 0 && col < 8;
-
-        public bool IsEmpty(int row, int col) => Grid[row, col] == null;
-
-
-        public List<Move> GetAllLegalMoves(PieceColor pieceColor)
-        {
-            List<Move> legal = new List<Move>();
-            _isSimulating = true;
-            foreach (Move m in GetRawMoves(pieceColor))
-            {
-                ApplyMove(m);
-                if (!IsInCheck(pieceColor))
-                    legal.Add(m);
-                UndoMove();
-            }
-            _isSimulating = false;
-            return legal;
-        }
-
-        public List<Move> GetRawMoves(PieceColor color) {
-                List<Move> rawMoves = new List<Move>();
-                for (int row = 0; row < 8; row++)
-                {
-                    for (int col = 0; col < 8; col++)
+                    Piece piece = Grid[row, col];
+                    if (piece != null && piece.Color == color)
                     {
-                        Piece piece = Grid[row, col];
-                        if (piece != null && piece.Color == color)
-                        {
-                            rawMoves.AddRange(piece.GetLegalMoves(this));
-                        }
+                        rawMoves.AddRange(piece.GetLegalMoves(this));
                     }
                 }
-                return rawMoves;
             }
+            return rawMoves;
         }
-        }
+    }
+}
