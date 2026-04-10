@@ -18,11 +18,11 @@
             public bool WhiteCanCastleQueenside = false;
             public bool BlackCanCastleKingside = false;
             public bool BlackCanCastleQueenside = false;
-            (int, int)? EnPassantTarget { get; set; }
+            public (int, int)? EnPassantTarget { get; set; }
             private bool _isSimulating = false; // flag to tell the “this move is fake (simulation), not a real move
 
         
-        public Board()
+            public Board()
             {
                 MoveHistory = new List<MoveRecord>();
                 CurrentTurn = PieceColor.White;
@@ -264,12 +264,12 @@
                 BlackCanCastleQueenside = true;
             }
 
-        public bool IsInBounds(int row, int col) => row >= 0 && row < 8 && col >= 0 && col < 8;
+            public bool IsInBounds(int row, int col) => row >= 0 && row < 8 && col >= 0 && col < 8;
+    
+            public bool IsEmpty(int row, int col) => Grid[row, col] == null;
 
-        public bool IsEmpty(int row, int col) => Grid[row, col] == null;
 
-
-        public List<Move> GetAllLegalMoves(PieceColor pieceColor)
+            public List<Move> GetAllLegalMoves(PieceColor pieceColor)
         {
             List<Move> legal = new List<Move>();
             _isSimulating = true;
@@ -284,7 +284,7 @@
             return legal;
         }
 
-        public List<Move> GetRawMoves(PieceColor color) {
+            public List<Move> GetRawMoves(PieceColor color) {
                 List<Move> rawMoves = new List<Move>();
                 for (int row = 0; row < 8; row++)
                 {
@@ -300,4 +300,4 @@
                 return rawMoves;
             }
         }
-        }
+    }
