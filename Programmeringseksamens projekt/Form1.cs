@@ -85,5 +85,10 @@ namespace Programmeringseksamens_projekt
         {
             Task start = network.StartServer();
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
