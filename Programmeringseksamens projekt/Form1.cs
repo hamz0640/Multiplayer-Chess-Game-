@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
+using Programmeringseksamens_projekt;
 
 namespace Programmeringseksamens_projekt
 {
@@ -63,27 +64,45 @@ namespace Programmeringseksamens_projekt
 				return;
 
 			if (selectedPiece != null)
-			{
-				MovePiece(selectedPiece.Value.Item1, selectedPiece.Value.Item2, x, y);       
+			{       
 				for (int i = 0; i < 64; i++)
 				{
 					ToggleHighlight(i % 8, (i / 8) % 8, false);
 				}
 
-				Piece pieceAt = board.Grid[y, x];
-				selectedPiece = null;
+				Piece pieceAt = board.Grid[selectedPiece.Value.Item2, selectedPiece.Value.Item1];
 
 				if (pieceAt == null)
 					return;
 
-				foreach (Move move in board.GetAllLegalMoves(pieceAt.Color))
+                foreach (Move move in board.GetAllLegalMoves(pieceAt.Color))
 				{
-					if (move.From.col != x || move.From.row != y)
+					if (move.From.col == move.To.col && move.From.row == move.To.row)
 						continue;
 
-					ToggleHighlight(move.From.col, move.From.row, true);
+                    if (move.From.col != selectedPiece.Value.Item1 || move.From.row != selectedPiece.Value.Item2)
+						continue;
+
+					Debug.Print(x + " " + y);
+					Debug.Print(move.To.col + " " + move.To.row);
+					if (move.To.col != x || move.To.row != y)
+                        continue;
+
+					// TODO: Promotion and color, få Hamza til at gøre det :)
+					board.ApplyMove(new Move(
+						(selectedPiece.Value.Item2, selectedPiece.Value.Item1),
+						(y, x)
+					));
+					Debug.Print("Moved");
+
+                    MovePiece(selectedPiece.Value.Item1, selectedPiece.Value.Item2, x, y);
+
+                    break;
 				}
-			}
+
+				Debug.Print("Unselected");
+                selectedPiece = null;
+            }
 			else
 			{
 				if (!Pieces.ContainsKey((x, y)))
@@ -91,6 +110,7 @@ namespace Programmeringseksamens_projekt
 
 				ToggleHighlight(x, y, true);
 				selectedPiece = (x, y);
+				Debug.Print("x: " + x + ", y: " + y);
 
 				Piece pieceAt = board.Grid[y, x];
 				foreach (Move move in board.GetAllLegalMoves(pieceAt.Color))
@@ -98,7 +118,7 @@ namespace Programmeringseksamens_projekt
 					if (move.From.col != x || move.From.row != y)
 						continue;
 
-					ToggleHighlight(move.From.col, move.From.row, true);
+                    ToggleHighlight(move.To.col, move.To.row, true);
 				}
 			}
 		}
