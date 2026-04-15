@@ -38,10 +38,10 @@
             // 
             // hostButton
             // 
-            this.hostButton.Location = new System.Drawing.Point(363, 35);
-            this.hostButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.hostButton.Location = new System.Drawing.Point(484, 43);
+            this.hostButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.hostButton.Name = "hostButton";
-            this.hostButton.Size = new System.Drawing.Size(109, 39);
+            this.hostButton.Size = new System.Drawing.Size(145, 48);
             this.hostButton.TabIndex = 1;
             this.hostButton.Text = "Host Game";
             this.hostButton.UseVisualStyleBackColor = true;
@@ -49,18 +49,18 @@
             // 
             // ipEnterField
             // 
-            this.ipEnterField.Location = new System.Drawing.Point(363, 11);
-            this.ipEnterField.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ipEnterField.Location = new System.Drawing.Point(484, 14);
+            this.ipEnterField.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ipEnterField.Name = "ipEnterField";
-            this.ipEnterField.Size = new System.Drawing.Size(226, 20);
+            this.ipEnterField.Size = new System.Drawing.Size(300, 22);
             this.ipEnterField.TabIndex = 0;
             // 
             // joinField
             // 
-            this.joinField.Location = new System.Drawing.Point(480, 35);
-            this.joinField.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.joinField.Location = new System.Drawing.Point(640, 43);
+            this.joinField.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.joinField.Name = "joinField";
-            this.joinField.Size = new System.Drawing.Size(109, 39);
+            this.joinField.Size = new System.Drawing.Size(145, 48);
             this.joinField.TabIndex = 2;
             this.joinField.Text = "Join Game";
             this.joinField.UseVisualStyleBackColor = true;
@@ -68,20 +68,20 @@
             // 
             // drawButton
             // 
-            this.drawButton.Location = new System.Drawing.Point(363, 96);
-            this.drawButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.drawButton.Location = new System.Drawing.Point(484, 118);
+            this.drawButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.drawButton.Name = "drawButton";
-            this.drawButton.Size = new System.Drawing.Size(226, 39);
+            this.drawButton.Size = new System.Drawing.Size(301, 48);
             this.drawButton.TabIndex = 3;
             this.drawButton.Text = "Offer Draw";
             this.drawButton.UseVisualStyleBackColor = true;
             // 
             // resignButton
             // 
-            this.resignButton.Location = new System.Drawing.Point(364, 139);
-            this.resignButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.resignButton.Location = new System.Drawing.Point(485, 171);
+            this.resignButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.resignButton.Name = "resignButton";
-            this.resignButton.Size = new System.Drawing.Size(225, 39);
+            this.resignButton.Size = new System.Drawing.Size(300, 48);
             this.resignButton.TabIndex = 4;
             this.resignButton.Text = "Resign";
             this.resignButton.UseVisualStyleBackColor = true;
@@ -89,28 +89,27 @@
             // listView1
             // 
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(363, 200);
-            this.listView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listView1.Location = new System.Drawing.Point(484, 246);
+            this.listView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(226, 155);
+            this.listView1.Size = new System.Drawing.Size(300, 190);
             this.listView1.TabIndex = 5;
             this.listView1.UseCompatibleStateImageBehavior = false;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(600, 366);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.resignButton);
             this.Controls.Add(this.drawButton);
             this.Controls.Add(this.joinField);
             this.Controls.Add(this.ipEnterField);
             this.Controls.Add(this.hostButton);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form1";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
