@@ -18,7 +18,7 @@ namespace Programmeringseksamens_projekt
 		Dictionary<(int, int), Panel> BoardPanels = new Dictionary<(int, int), Panel>();
 		Dictionary<(int, int), PictureBox> Pieces = new Dictionary<(int, int), PictureBox>();
 
-		(int, int)? selectedPiece = null; 
+        (int, int)? selectedPiece = null; 
 		
 		Network network = new Network();
 		Board board = new Board();
@@ -75,6 +75,12 @@ namespace Programmeringseksamens_projekt
 				if (pieceAt == null)
 					return;
 
+                if (pieceAt.Color != board.CurrentTurn)
+                {
+                    selectedPiece = null;
+                    return;
+                }
+
                 foreach (Move move in board.GetAllLegalMoves(pieceAt.Color))
 				{
 					if (move.From.col == move.To.col && move.From.row == move.To.row)
@@ -89,10 +95,7 @@ namespace Programmeringseksamens_projekt
                         continue;
 
 					// TODO: Promotion and color, få Hamza til at gøre det :)
-					board.ApplyMove(new Move(
-						(selectedPiece.Value.Item2, selectedPiece.Value.Item1),
-						(y, x)
-					));
+					board.ApplyMove(move);
 					Debug.Print("Moved");
 
                     MovePiece(selectedPiece.Value.Item1, selectedPiece.Value.Item2, x, y);
@@ -113,7 +116,11 @@ namespace Programmeringseksamens_projekt
 				Debug.Print("x: " + x + ", y: " + y);
 
 				Piece pieceAt = board.Grid[y, x];
-				foreach (Move move in board.GetAllLegalMoves(pieceAt.Color))
+
+                if (pieceAt == null || pieceAt.Color != board.CurrentTurn)
+                    return;
+
+                foreach (Move move in board.GetAllLegalMoves(pieceAt.Color))
 				{
 					if (move.From.col != x || move.From.row != y)
 						continue;
