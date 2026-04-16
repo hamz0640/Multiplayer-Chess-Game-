@@ -12,7 +12,7 @@ namespace Programmeringseksamens_projekt
     {
         public Pawn(PieceColor color, (int, int) position) : base(color, PieceType.Pawn, position) { }
 
-        public override List<Move> GetLegalMoves(Board board)
+        public override List<Move> GetLegalMoves(Board board, bool includeCastling = true)
         {
             int direction = (this.Color == PieceColor.White) ? 1 : -1;
             int lastRow = (this.Color == PieceColor.White) ? 7 : 0;

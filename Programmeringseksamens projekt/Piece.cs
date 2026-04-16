@@ -21,6 +21,6 @@ namespace Programmeringseksamens_projekt
 			Position = position;
 		}
 
-		public abstract List<Move> GetLegalMoves(Board board);
+		public abstract List<Move> GetLegalMoves(Board board, bool includeCastling = true);
 	}
 }

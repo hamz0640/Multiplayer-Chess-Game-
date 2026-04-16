@@ -11,7 +11,7 @@ namespace Programmeringseksamens_projekt
 	{
 		public Bishop(PieceColor color, (int, int) position) : base(color, PieceType.Bishop, position) { }
 
-		public override List<Move> GetLegalMoves(Board board)
+		public override List<Move> GetLegalMoves(Board board, bool includeCastling = true)
 		{
 			int directions = 4;
 			List<Move> legalMoves = new List<Move>();

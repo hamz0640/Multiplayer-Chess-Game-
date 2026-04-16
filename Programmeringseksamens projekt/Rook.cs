@@ -11,7 +11,7 @@ namespace Programmeringseksamens_projekt
 	{
 		public Rook(PieceColor color, (int, int) position) : base(color, PieceType.Rook, position) { }
 
-		public override List<Move> GetLegalMoves(Board board)
+		public override List<Move> GetLegalMoves(Board board, bool includeCastling = true)
 		{
 		   int directions = 4; // up, down, left, right
 			List<Move> legalMoves = new List<Move>();

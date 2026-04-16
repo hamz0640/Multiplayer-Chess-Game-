@@ -11,7 +11,7 @@ namespace Programmeringseksamens_projekt
 	{
 		public Knight(PieceColor color, (int, int) position) : base(color, PieceType.Knight, position) { }
 
-		public override List<Move> GetLegalMoves(Board board)
+		public override List<Move> GetLegalMoves(Board board, bool includeCastling = true)
 		{
 			List<Move> legalMoves = new List<Move>();
 			int[] dRow = { -2, -1, 1, 2, 2, 1, -1, -2 };

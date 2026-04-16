@@ -28,8 +28,18 @@ namespace Programmeringseksamens_projekt
 		public Form1()
 		{
 			InitializeComponent();
-			InitializePieces();
+            int borderThickness = 15;
 
+            Panel borderPanel = new Panel();
+            borderPanel.Location = new Point(11 - borderThickness, 11 - borderThickness);
+            borderPanel.Size = new Size(
+                8 * SQUARE_SIZE + borderThickness * 2,
+                8 * SQUARE_SIZE + borderThickness * 2
+            );
+            borderPanel.BackColor = Color.Black;
+            Controls.Add(borderPanel);
+            InitializePieces();
+            borderPanel.SendToBack();
 			board.SetupStartingPosition();
 			foreach (Control control in Controls)
 			{
@@ -273,5 +283,10 @@ namespace Programmeringseksamens_projekt
 		{
 			Task start = network.StartServer();
 		}
-	}
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+    }
 }

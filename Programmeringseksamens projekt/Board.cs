@@ -272,18 +272,34 @@ namespace Programmeringseksamens_projekt
 
 		public List<Move> GetAllLegalMoves(PieceColor pieceColor)
 		{
-			List<Move> legal = new List<Move>();
-			_isSimulating = true;
-			foreach (Move m in GetRawMoves(pieceColor))
-			{
-				ApplyMove(m);
-				if (!IsInCheck(pieceColor))
-					legal.Add(m);
-				UndoMove();
-			}
-			_isSimulating = false;
-			return legal;
-		}
+            List<Move> legal = new List<Move>();
+            _isSimulating = true;
+            foreach (Move m in GetRawMoves(pieceColor)) 
+            {
+                ApplyMove(m);
+                if (!IsInCheck(pieceColor))
+                    legal.Add(m);
+                UndoMove();
+            }
+
+            (int row, int col) kingPos = pieceColor == PieceColor.White ? (0, 4) : (7, 4);
+            Piece kingPiece = Grid[kingPos.row, kingPos.col];
+            if (kingPiece is King k)
+            {
+                foreach (Move m in k.GetLegalMoves(this, true)
+                                    .Where(m => m.Type == MoveType.CastlingKingside
+                                             || m.Type == MoveType.CastlingQueenside))
+                {
+                    ApplyMove(m);
+                    if (!IsInCheck(pieceColor))
+                        legal.Add(m);
+                    UndoMove();
+                }
+            }
+
+            _isSimulating = false;
+            return legal;
+        }
 
 		public List<Move> GetRawMoves(PieceColor color)
 		{
@@ -295,8 +311,9 @@ namespace Programmeringseksamens_projekt
 					Piece piece = Grid[row, col];
 					if (piece != null && piece.Color == color)
 					{
-						rawMoves.AddRange(piece.GetLegalMoves(this));
-					}
+                        rawMoves.AddRange(piece is King king? king.GetLegalMoves(this,false) : piece.GetLegalMoves(this));
+
+                    }
 				}
 			}
 			return rawMoves;

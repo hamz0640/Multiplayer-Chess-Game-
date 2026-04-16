@@ -11,7 +11,7 @@ namespace Programmeringseksamens_projekt
 	{
 		public King(PieceColor color, (int, int) position) : base(color, PieceType.King, position) { }
 
-		public override List<Move> GetLegalMoves(Board board)
+		public override List<Move> GetLegalMoves(Board board, bool includeCastling = true)
 		{
 			List<Move> legalMoves = new List<Move>();
 			int[] dRow = { -1, -1, -1, 0, 0, 1, 1, 1 };
@@ -29,21 +29,39 @@ namespace Programmeringseksamens_projekt
 					}
 				}
 			}
-			// Kingside castling
-			if (Color == PieceColor.White ? board.WhiteCanCastleKingside : board.BlackCanCastleKingside)
-			{
-				if (board.IsEmpty(Position.row, 5) && board.IsEmpty(Position.row, 6))
-					legalMoves.Add(new Move((Position.row, Position.col), (Position.row, 6), MoveType.CastlingKingside));
-			}
 
-			// Queenside castling
-			if (Color == PieceColor.White ? board.WhiteCanCastleQueenside : board.BlackCanCastleQueenside)
-			{
-				if (board.IsEmpty(Position.row, 1) && board.IsEmpty(Position.row, 2) && board.IsEmpty(Position.row, 3))
-					legalMoves.Add(new Move((Position.row, Position.col), (Position.row, 2), MoveType.CastlingQueenside));
-			}
 
-			return legalMoves;
+            if (includeCastling)
+            {
+                // Kingside
+                if (Color == PieceColor.White ? board.WhiteCanCastleKingside : board.BlackCanCastleKingside)
+                {
+                    if (board.IsEmpty(Position.row, 5) && board.IsEmpty(Position.row, 6))
+                    {
+                        PieceColor enemyColor = Color == PieceColor.White ? PieceColor.Black : PieceColor.White;
+                        var enemyMoves = board.GetRawMoves(enemyColor); 
+                        bool safe = !enemyMoves.Any(m => m.To.row == Position.row &&
+                                    (m.To.col == 4 || m.To.col == 5 || m.To.col == 6));
+                        if (safe)
+                            legalMoves.Add(new Move((Position.row, Position.col), (Position.row, 6), MoveType.CastlingKingside));
+                    }
+                }
+
+                // Queenside
+                if (Color == PieceColor.White ? board.WhiteCanCastleQueenside : board.BlackCanCastleQueenside)
+                {
+                    if (board.IsEmpty(Position.row, 1) && board.IsEmpty(Position.row, 2) && board.IsEmpty(Position.row, 3))
+                    {
+                        PieceColor enemyColor = Color == PieceColor.White ? PieceColor.Black : PieceColor.White;
+                        var enemyMoves = board.GetRawMoves(enemyColor);
+                        bool safe = !enemyMoves.Any(m => m.To.row == Position.row &&
+                                    (m.To.col == 2 || m.To.col == 3 || m.To.col == 4));
+                        if (safe)
+                            legalMoves.Add(new Move((Position.row, Position.col), (Position.row, 2), MoveType.CastlingQueenside));
+                    }
+                }
+            }
+            return legalMoves;
 		}
 	}
 }
