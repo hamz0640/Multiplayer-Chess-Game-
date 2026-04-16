@@ -50,6 +50,13 @@ namespace Programmeringseksamens_projekt
 					Grid[move.From.row, move.From.col] = null;
 					piece.HasMoved = true;
 					piece.Position = (move.To.row, move.To.col);
+
+					if (piece.Type == PieceType.King)
+					{
+                        if (piece.Color == PieceColor.White) { WhiteCanCastleKingside = false; WhiteCanCastleQueenside = false; }
+                        else { BlackCanCastleKingside = false; BlackCanCastleQueenside = false; }
+                    }
+					
 					break;
 				case MoveType.CastlingKingside:
 					Piece kingSideking = Grid[move.From.row, 4];
@@ -139,6 +146,7 @@ namespace Programmeringseksamens_projekt
 						MessageBox.Show("Stalemate! It's a draw.");
 				}
 			}
+
 		}
 
 		public void UndoMove()
