@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static Programmeringseksamens_projekt.Enums;
+using System.Diagnostics;
 
 namespace Programmeringseksamens_projekt
 {
@@ -46,8 +47,7 @@ namespace Programmeringseksamens_projekt
                 {
                     if (captureRow == lastRow)
                     {
-                        legalMoves.Add(new Move((Position.row, Position.col), (captureRow, Position.col + 1), MoveType.Promotion, PieceType.Queen));
-                        
+                        legalMoves.Add(new Move((Position.row, Position.col), (captureRow, Position.col + 1), MoveType.Promotion, PieceType.Queen));   
                     }
 
                     else

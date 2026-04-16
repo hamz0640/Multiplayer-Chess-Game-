@@ -15,10 +15,10 @@ namespace Programmeringseksamens_projekt
 {
 	public partial class Form1 : Form
 	{
-		Dictionary<(int, int), Panel> BoardPanels = new Dictionary<(int, int), Panel>();
-		Dictionary<(int, int), PictureBox> Pieces = new Dictionary<(int, int), PictureBox>();
+		Dictionary<(int row, int col), Panel> BoardPanels = new Dictionary<(int, int), Panel>();
+		Dictionary<(int row, int col), PictureBox> Pieces = new Dictionary<(int, int), PictureBox>();
 
-        (int, int)? selectedPiece = null; 
+        (int row, int col)? selectedPiece = null; 
 		
 		Network network = new Network();
 		Board board = new Board();
@@ -37,30 +37,30 @@ namespace Programmeringseksamens_projekt
 			}
 		}
 
-		private void ToggleHighlight(int x, int y, bool highlighted)
+		private void ToggleHighlight(int row, int col, bool highlighted)
 		{
 			Color color;
-			if (SquareIsWhite(x, y))
+			if (SquareIsWhite((row, col)))
 				color = highlighted ? Color.Orange : Color.SandyBrown;
 			else
 				color = highlighted ? Color.Chocolate : Color.Sienna;
 
-			BoardPanels[(x, y)].BackColor = color;
-			if (Pieces.ContainsKey((x, y)))
+			BoardPanels[(row, col)].BackColor = color;
+			if (Pieces.ContainsKey((row, col)))
 			{
-				Pieces[(x, y)].BackColor = color;
+				Pieces[(row, col)].BackColor = color;
 			}
 		}
 
 		private void HandleClick(object sender, MouseEventArgs e)
 		{
-			int x = e.X + ((Control)sender).Location.X;
-			int y = e.Y + ((Control)sender).Location.Y;
+			int clickCol = e.X + ((Control)sender).Location.X;
+			int clickRow = e.Y + ((Control)sender).Location.Y;
 
-			x = (x - 11) / SQUARE_SIZE;
-			y = 7 - (y - 11) / SQUARE_SIZE;
+			clickCol = (clickCol - 11) / SQUARE_SIZE;
+			clickRow = 7 - (clickRow - 11) / SQUARE_SIZE;
 
-			if (x < 0 || x >= 8 || y < 0 || y >= 8)
+			if (clickCol < 0 || clickCol >= 8 || clickRow < 0 || clickRow >= 8)
 				return;
 
 			if (selectedPiece != null)
@@ -70,7 +70,7 @@ namespace Programmeringseksamens_projekt
 					ToggleHighlight(i % 8, (i / 8) % 8, false);
 				}
 
-				Piece pieceAt = board.Grid[selectedPiece.Value.Item2, selectedPiece.Value.Item1];
+				Piece pieceAt = board.Grid[selectedPiece.Value.row, selectedPiece.Value.col];
 
 				if (pieceAt == null)
 					return;
@@ -86,139 +86,162 @@ namespace Programmeringseksamens_projekt
 					if (move.From.col == move.To.col && move.From.row == move.To.row)
 						continue;
 
-                    if (move.From.col != selectedPiece.Value.Item1 || move.From.row != selectedPiece.Value.Item2)
+                    if (move.From.col != selectedPiece.Value.col || move.From.row != selectedPiece.Value.row)
 						continue;
 
-					Debug.Print(x + " " + y);
-					Debug.Print(move.To.col + " " + move.To.row);
-					if (move.To.col != x || move.To.row != y)
+					if (move.To.col != clickCol || move.To.row != clickRow)
                         continue;
 
 					// TODO: Promotion and color, få Hamza til at gøre det :)
 					board.ApplyMove(move);
-					Debug.Print("Moved");
-
-                    MovePiece(selectedPiece.Value.Item1, selectedPiece.Value.Item2, x, y);
+                    MovePieceVisual(move);
 
                     break;
 				}
 
-				Debug.Print("Unselected");
                 selectedPiece = null;
             }
 			else
 			{
-				if (!Pieces.ContainsKey((x, y)))
+				if (!Pieces.ContainsKey((clickRow, clickCol)))
 					return;
 
-				ToggleHighlight(x, y, true);
-				selectedPiece = (x, y);
-				Debug.Print("x: " + x + ", y: " + y);
+				ToggleHighlight(clickRow, clickCol, true);
+				selectedPiece = (clickRow, clickCol);
 
-				Piece pieceAt = board.Grid[y, x];
+				Piece pieceAt = board.Grid[clickRow, clickCol];
 
                 if (pieceAt == null || pieceAt.Color != board.CurrentTurn)
                     return;
 
                 foreach (Move move in board.GetAllLegalMoves(pieceAt.Color))
 				{
-					if (move.From.col != x || move.From.row != y)
+					if (move.From.col != clickCol || move.From.row != clickRow)
 						continue;
 
-                    ToggleHighlight(move.To.col, move.To.row, true);
+                    ToggleHighlight(move.To.row, move.To.col, true);
 				}
 			}
 		}
 
 		private void InitializePieces()
 		{
-			for (int y = 7; y >= 0; y--)
+			for (int row = 7; row >= 0; row--)
 			{
-				for (int x = 0; x < 8; x++)
+				for (int col = 0; col < 8; col++)
 				{
 					Panel panel = new Panel();
 					panel.Size = new Size(SQUARE_SIZE, SQUARE_SIZE);
-					panel.Location = new Point(11 + x * SQUARE_SIZE, 11 + (7 - y) * SQUARE_SIZE);
-					panel.BackColor = GetSquareColor(x, y);
+					panel.Location = new Point(11 + col * SQUARE_SIZE, 11 + (7 - row) * SQUARE_SIZE);
+					panel.BackColor = GetSquareColor((row, col));
 
-					BoardPanels[(x, y)] = panel;
+					BoardPanels[(row, col)] = panel;
 					Controls.Add(panel);
 				}
 			}
 
-			for (int x = 0; x < 8; x++)
+			for (int col = 0; col < 8; col++)
 			{
-				AddPiece(x, 1, Properties.Resources.wP);
-				AddPiece(x, 6, Properties.Resources.bP);
+				AddPiece(1, col, Properties.Resources.wP);
+				AddPiece(6, col, Properties.Resources.bP);
 			}
 
 			AddPiece(0, 0, Properties.Resources.wR);
-			AddPiece(1, 0, Properties.Resources.wN);
-			AddPiece(2, 0, Properties.Resources.wB);
-			AddPiece(3, 0, Properties.Resources.wQ);
-			AddPiece(4, 0, Properties.Resources.wK);
-			AddPiece(5, 0, Properties.Resources.wB);
-			AddPiece(6, 0, Properties.Resources.wN);
-			AddPiece(7, 0, Properties.Resources.wR);
+			AddPiece(0, 1, Properties.Resources.wN);
+			AddPiece(0, 2, Properties.Resources.wB);
+			AddPiece(0, 3, Properties.Resources.wQ);
+			AddPiece(0, 4, Properties.Resources.wK);
+			AddPiece(0, 5, Properties.Resources.wB);
+			AddPiece(0, 6, Properties.Resources.wN);
+			AddPiece(0, 7, Properties.Resources.wR);
 
-			AddPiece(0, 7, Properties.Resources.bR);
-			AddPiece(1, 7, Properties.Resources.bN);
-			AddPiece(2, 7, Properties.Resources.bB);
-			AddPiece(3, 7, Properties.Resources.bQ);
-			AddPiece(4, 7, Properties.Resources.bK);
-			AddPiece(5, 7, Properties.Resources.bB);
-			AddPiece(6, 7, Properties.Resources.bN);
+			AddPiece(7, 0, Properties.Resources.bR);
+			AddPiece(7, 1, Properties.Resources.bN);
+			AddPiece(7, 2, Properties.Resources.bB);
+			AddPiece(7, 3, Properties.Resources.bQ);
+			AddPiece(7, 4, Properties.Resources.bK);
+			AddPiece(7, 5, Properties.Resources.bB);
+			AddPiece(7, 6, Properties.Resources.bN);
 			AddPiece(7, 7, Properties.Resources.bR);
 		}
 
-		private bool SquareIsWhite(int x, int y)
+		private bool SquareIsWhite((int row, int col) position)
 		{
-			return ((x + (y % 2 == 0 ? 1 : 0)) % 2 == 0);
+			return ((position.col + (position.row % 2 == 0 ? 1 : 0)) % 2 == 0);
 		}
 
-		private Color GetSquareColor(int x, int y)
+		private Color GetSquareColor((int row, int col) position)
 		{
-			if (SquareIsWhite(x, y))
+			if (SquareIsWhite(position))
 				return Color.SandyBrown;
 			else
 				return Color.Sienna;
 		}
 
-		private void MovePiece(int x1, int y1, int x2, int y2)
+		private void MovePieceVisual(Move move)
 		{
-			PictureBox piece = Pieces[(x1, y1)];
-			ToggleHighlight(x1, y1, false);
-			Pieces.Remove((x1, y1));
+			PictureBox piece = Pieces[move.From];
+			Pieces.Remove(move.From);
 
-			if (Pieces.ContainsKey((x2, y2)))
+			PlaceVisually(piece, move.To);
+            if (Pieces.ContainsKey(move.To))
 			{
-				Controls.Remove(Pieces[(x2, y2)]);
+				Controls.Remove(Pieces[move.To]);
 			}
 
-			Pieces[(x2, y2)] = piece;
+			Pieces[move.To] = piece;
 
-			piece.Location = new Point(
-				11 + x2 * SQUARE_SIZE,
-				11 + (7 - y2) * SQUARE_SIZE
-			);
-			piece.BackColor = GetSquareColor(x2, y2);
-		}
+			
+			piece.BackColor = GetSquareColor(move.To);
 
-		private PictureBox AddPiece(int x, int y, Image pieceImage)
+			if (move.Type == Enums.MoveType.CastlingKingside)
+			{
+				(int, int) rookFromPosition = board.CurrentTurn == Enums.PieceColor.White ? (7, 7) : (0, 7);
+                (int, int) rookToPosition = board.CurrentTurn == Enums.PieceColor.White ? (7, 5) : (0, 5);
+
+				PictureBox rook = Pieces[rookFromPosition];
+				PlaceVisually(rook, rookToPosition);
+				Pieces[rookToPosition] = rook;
+				Pieces.Remove(rookFromPosition);
+            }
+
+            if (move.Type == Enums.MoveType.CastlingQueenside)
+            {
+                (int, int) rookFromPosition = board.CurrentTurn == Enums.PieceColor.White ? (7, 0) : (0, 0);
+                (int, int) rookToPosition = board.CurrentTurn == Enums.PieceColor.White ? (7, 3) : (0, 3);
+
+                PictureBox rook = Pieces[rookFromPosition];
+                PlaceVisually(rook, rookToPosition);
+                Pieces[rookToPosition] = rook;
+                Pieces.Remove(rookFromPosition);
+            }
+        }
+
+		private void PlaceVisually(PictureBox piece, (int row, int col) position)
+		{
+            piece.Location = new Point(
+                11 + position.col * SQUARE_SIZE,
+                11 + (7 - position.row) * SQUARE_SIZE
+            );
+
+			piece.BackColor = GetSquareColor(position);
+        }
+
+		private PictureBox AddPiece(int row, int col, Image pieceImage)
 		{
 			PictureBox piece = new PictureBox();
 			piece.Image = pieceImage;
 			piece.Size = new Size(SQUARE_SIZE, SQUARE_SIZE);
 			piece.Location = new Point(
-				11 + x * SQUARE_SIZE,
-				11 + (7 - y) * SQUARE_SIZE
+				11 + col * SQUARE_SIZE,
+				11 + (7 - row) * SQUARE_SIZE
 			);
 			piece.SizeMode = PictureBoxSizeMode.CenterImage;
-			piece.BackColor = GetSquareColor(x, y);
+			piece.BackColor = GetSquareColor((row, col));
 
 			Controls.Add(piece);
 			piece.BringToFront();
-			Pieces[(x, y)] = piece;
+			Pieces[(row, col)] = piece;
 
 			return piece;
 		}

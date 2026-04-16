@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static Programmeringseksamens_projekt.Enums;
+using System.Diagnostics;
 
 namespace Programmeringseksamens_projekt
 {
@@ -103,6 +104,7 @@ namespace Programmeringseksamens_projekt
 					Grid[move.From.row, move.To.col] = null;
 					break;
 				case MoveType.Promotion:
+					Debug.Print("What ze fuk");
 					Piece promotedPiece = Grid[move.From.row, move.From.col];
 
 					if (move.PromotionPiece == PieceType.Queen) promotedPiece = new Queen(Grid[move.From.row, move.From.col].Color, move.To);
@@ -130,8 +132,6 @@ namespace Programmeringseksamens_projekt
 				{
 					if (GetAllLegalMoves(CurrentTurn).Count == 0)
 						MessageBox.Show($"Checkmate! {(CurrentTurn == PieceColor.White ? "Black" : "White")} wins!");
-					else
-						MessageBox.Show("Check!");
 				}
 				else
 				{
@@ -152,15 +152,18 @@ namespace Programmeringseksamens_projekt
 			switch (move.Type)
 			{
 				case MoveType.Normal:
-				case MoveType.Promotion:
-					Piece piece = Grid[move.To.row, move.To.col];
-					Grid[move.From.row, move.From.col] = piece;
-					Grid[move.To.row, move.To.col] = record.CapturedPiece;
-					piece.Position = (move.From.row, move.From.col);
-					piece.HasMoved = record.PieceHadMoved;
-					break;
-
-				case MoveType.EnPassant:
+                    Piece piece = Grid[move.To.row, move.To.col];
+                    Grid[move.From.row, move.From.col] = piece;
+                    Grid[move.To.row, move.To.col] = record.CapturedPiece;
+                    piece.Position = (move.From.row, move.From.col);
+                    piece.HasMoved = record.PieceHadMoved;
+                    break;
+                case MoveType.Promotion:
+                    Grid[move.From.row, move.From.col] = new Pawn(MoveHistory.Count % 2 == 0 ? PieceColor.White : PieceColor.Black, (move.From.row, move.From.col));
+                    Grid[move.From.row, move.From.col].HasMoved = record.PieceHadMoved;
+                    Grid[move.To.row, move.To.col] = record.CapturedPiece;
+                    break;
+                case MoveType.EnPassant:
 					Piece epPawn = Grid[move.To.row, move.To.col];
 					Grid[move.From.row, move.From.col] = epPawn;
 					Grid[move.To.row, move.To.col] = null;
