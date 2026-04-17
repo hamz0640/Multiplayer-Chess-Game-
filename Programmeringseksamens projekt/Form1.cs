@@ -324,21 +324,24 @@ namespace Programmeringseksamens_projekt
 			{
 				case Enums.MessageType.Move:
 					(int, int) from = (
-						BitConverter.ToInt32(bytes, 1),
-						BitConverter.ToInt32(bytes, 5)
+						BitConverter.ToInt32(bytes, 2),
+						BitConverter.ToInt32(bytes, 6)
 					);
 
 					(int, int) to = (
-						BitConverter.ToInt32(bytes, 9),
-						BitConverter.ToInt32(bytes, 13)
+						BitConverter.ToInt32(bytes, 10),
+						BitConverter.ToInt32(bytes, 14)
 					);
 
-					var moveType = (Enums.MoveType)BitConverter.ToChar(bytes, 17);
+					var moveType = (Enums.MoveType)BitConverter.ToChar(bytes, 18);
 
-					bool isPromoting = BitConverter.ToBoolean(bytes, 18);
-					Enums.PieceType pieceType = (Enums.PieceType)BitConverter.ToChar(bytes, 19);
+					bool isPromoting = BitConverter.ToBoolean(bytes, 19);
+					Enums.PieceType pieceType = (Enums.PieceType)BitConverter.ToChar(bytes, 20);
                     
-					Move move = new Move(from, to, moveType, pieceType);
+					Move move = new Move(from, to, moveType);
+					if (isPromoting)
+						move.PromotionPiece = pieceType;
+
                     board.ApplyMove(move);
                     MovePieceVisual(move);
 
