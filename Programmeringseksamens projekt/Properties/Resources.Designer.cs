@@ -123,6 +123,26 @@ namespace Programmeringseksamens_projekt.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap flag_48 {
+            get {
+                object obj = ResourceManager.GetObject("flag-48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap handshake_48 {
+            get {
+                object obj = ResourceManager.GetObject("handshake-48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap wB {
             get {
                 object obj = ResourceManager.GetObject("wB", resourceCulture);

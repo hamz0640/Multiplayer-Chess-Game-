@@ -1,13 +1,18 @@
 {
   "ShowEmptyProjects": false,
-  "SelectedGroups": [],
+  "SelectedGroups": [
+    "C:\\Users\\hamza\\OneDrive - Frederikshavn Kommune\\Dokumenter\\Programmering eksamensprojekt\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\Form1.resx",
+    "C:\\Users\\hamza\\OneDrive - Frederikshavn Kommune\\Dokumenter\\Programmering eksamensprojekt\\Multiplayer-Chess-Game-\\Programmeringseksamens projekt\\Properties\\Resources.resx"
+  ],
   "ExpandedProjects": [],
   "EnableSpellChecker": true,
   "ColumnOrder": [
     "name",
     "type",
     "neutral-value",
-    "neutral-comment"
+    "neutral-comment",
+    "file-path",
+    "file-name"
   ],
   "VisibleColumnKeys": [
     "name",

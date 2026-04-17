@@ -128,5 +128,17 @@
   <ItemGroup>
     <None Include="Resources\wR.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\[CITYPNG.COM]HD Flag White Icon PNG - 600x600.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\handshake.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\handshake-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag-48.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
