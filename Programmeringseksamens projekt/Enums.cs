@@ -8,7 +8,13 @@ namespace Programmeringseksamens_projekt
 {
 	public class Enums
 	{
-		public enum PieceColor
+        public enum MessageType
+		{
+			Move,
+			Resign,
+			Draw,
+		}
+    public enum PieceColor
 		{
 			White,
 			Black

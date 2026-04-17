@@ -102,5 +102,12 @@ namespace Programmeringseksamens_projekt
 
 			return buffer;
 		}
+
+		public bool BytesAvailable()
+		{
+			if (!IsStarted) return false;
+
+			return Stream.DataAvailable;
+		}
 	}
 }

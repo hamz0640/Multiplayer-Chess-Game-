@@ -64,6 +64,9 @@ namespace Programmeringseksamens_projekt
 
 		private void HandleClick(object sender, MouseEventArgs e)
 		{
+			if (!network.IsStarted)
+				return;
+
 			int clickCol = e.X + ((Control)sender).Location.X;
 			int clickRow = e.Y + ((Control)sender).Location.Y;
 
@@ -105,6 +108,19 @@ namespace Programmeringseksamens_projekt
 					// TODO: Promotion and color, få Hamza til at gøre det :)
 					board.ApplyMove(move);
                     MovePieceVisual(move);
+
+					List<byte> bytes = new List<byte>();
+					
+					bytes.AddRange(BitConverter.GetBytes((byte)Enums.MessageType.Move));
+					bytes.AddRange(BitConverter.GetBytes(move.From.row));
+                    bytes.AddRange(BitConverter.GetBytes(move.From.col));
+                    bytes.AddRange(BitConverter.GetBytes(move.To.row));
+                    bytes.AddRange(BitConverter.GetBytes(move.To.col));
+					bytes.AddRange(BitConverter.GetBytes((byte)move.Type));
+					bytes.AddRange(BitConverter.GetBytes(move.PromotionPiece != null));
+					bytes.AddRange(BitConverter.GetBytes((byte)move.PromotionPiece.Value));
+
+                    network.Send(bytes.ToArray());
 
                     break;
 				}
@@ -281,12 +297,49 @@ namespace Programmeringseksamens_projekt
 
 		private void hostButton_Click(object sender, EventArgs e)
 		{
+			if (network.IsStarted)
+			{
+				return;
+			}
+
 			Task start = network.StartServer();
 		}
 
-        private void Form1_Load(object sender, EventArgs e)
+        private async void checkNetworkTimerTick(object sender, EventArgs e)
         {
+			if (!network.IsStarted)
+				return;
 
+			if (!network.BytesAvailable())
+				return;
+
+			var bytes = await network.Read();
+			var messageType = (Enums.MessageType)BitConverter.ToChar(bytes, 0);
+
+			switch (messageType)
+			{
+				case Enums.MessageType.Move:
+					(int, int) from = (
+						BitConverter.ToInt32(bytes, 1),
+						BitConverter.ToInt32(bytes, 5)
+					);
+
+					(int, int) to = (
+						BitConverter.ToInt32(bytes, 9),
+						BitConverter.ToInt32(bytes, 13)
+					);
+
+					var moveType = (Enums.MoveType)BitConverter.ToChar(bytes, 17);
+
+					bool isPromoting = BitConverter.ToBoolean(bytes, 18);
+					Enums.PieceType pieceType = (Enums.PieceType)BitConverter.ToChar(bytes, 19);
+                    
+					Move move = new Move(from, to, moveType, pieceType);
+                    board.ApplyMove(move);
+                    MovePieceVisual(move);
+
+                    break;
+			}
         }
     }
 }
