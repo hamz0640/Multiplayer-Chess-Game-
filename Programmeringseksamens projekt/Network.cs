@@ -106,6 +106,7 @@ namespace Programmeringseksamens_projekt
 		public bool BytesAvailable()
 		{
 			if (!IsStarted) return false;
+			if (Stream == null) return false;
 
 			return Stream.DataAvailable;
 		}

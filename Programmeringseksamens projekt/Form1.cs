@@ -118,7 +118,11 @@ namespace Programmeringseksamens_projekt
                     bytes.AddRange(BitConverter.GetBytes(move.To.col));
 					bytes.AddRange(BitConverter.GetBytes((byte)move.Type));
 					bytes.AddRange(BitConverter.GetBytes(move.PromotionPiece != null));
-					bytes.AddRange(BitConverter.GetBytes((byte)move.PromotionPiece.Value));
+					if (move.PromotionPiece != null)
+						bytes.AddRange(BitConverter.GetBytes((byte)move.PromotionPiece.Value));
+					else
+						bytes.Add(0);
+					
 
                     network.Send(bytes.ToArray());
 
