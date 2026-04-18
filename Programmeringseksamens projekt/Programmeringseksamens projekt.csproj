@@ -57,6 +57,7 @@
     </Compile>
     <Compile Include="King.cs" />
     <Compile Include="Knight.cs" />
+    <Compile Include="Message.cs" />
     <Compile Include="Move.cs" />
     <Compile Include="MoveRecord.cs" />
     <Compile Include="Network.cs" />

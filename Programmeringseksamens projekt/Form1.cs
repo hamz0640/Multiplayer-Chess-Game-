@@ -433,10 +433,5 @@ namespace Programmeringseksamens_projekt
             else
                 dict[type] = 1;
         }
-
-        private void TitleLabel_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

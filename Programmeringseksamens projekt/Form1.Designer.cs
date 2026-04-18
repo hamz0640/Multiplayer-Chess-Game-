@@ -212,7 +212,6 @@
             this.TitleLabel.Size = new System.Drawing.Size(419, 36);
             this.TitleLabel.TabIndex = 12;
             this.TitleLabel.Text = "Ultimate Chess Pro 2026";
-            this.TitleLabel.Click += new System.EventHandler(this.TitleLabel_Click);
             // 
             // label3
             // 
