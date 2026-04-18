@@ -77,7 +77,7 @@
             this.hostButton.Location = new System.Drawing.Point(486, 74);
             this.hostButton.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.hostButton.Name = "hostButton";
-            this.hostButton.Size = new System.Drawing.Size(94, 36);
+            this.hostButton.Size = new System.Drawing.Size(98, 35);
             this.hostButton.TabIndex = 1;
             this.hostButton.Text = "Host Game";
             this.hostButton.UseVisualStyleBackColor = false;
@@ -98,10 +98,10 @@
             this.joinField.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.joinField.Font = new System.Drawing.Font("Berlin Sans FB Demi", 12F);
             this.joinField.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.joinField.Location = new System.Drawing.Point(609, 74);
+            this.joinField.Location = new System.Drawing.Point(607, 74);
             this.joinField.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.joinField.Name = "joinField";
-            this.joinField.Size = new System.Drawing.Size(96, 36);
+            this.joinField.Size = new System.Drawing.Size(98, 35);
             this.joinField.TabIndex = 2;
             this.joinField.Text = "Join Game";
             this.joinField.UseVisualStyleBackColor = false;

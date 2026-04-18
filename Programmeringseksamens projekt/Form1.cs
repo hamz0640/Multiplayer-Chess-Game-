@@ -280,6 +280,13 @@ namespace Programmeringseksamens_projekt
                 Pieces[rookToPosition] = rook;
                 Pieces.Remove(rookFromPosition);
             }
+
+            if (move.Type == Enums.MoveType.EnPassant)
+            {
+                Controls.Remove(Pieces[(move.From.row, move.To.col)]);
+                Pieces.Remove((move.From.row, move.To.col));
+                Debug.Print("Enpassant");
+            }
         }
 
         private void PlaceVisually(PictureBox piece, (int row, int col) position)

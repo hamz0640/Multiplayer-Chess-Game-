@@ -101,7 +101,7 @@ namespace Programmeringseksamens_projekt
 				case MoveType.EnPassant:
 					Piece pawn = Grid[move.From.row, move.From.col];
 
-					// Move the capturing pawn / get the reference ahh
+					// Move the capturing pawn 
 					Grid[move.To.row, move.To.col] = pawn;
 					Grid[move.From.row, move.From.col] = null;
 					pawn.HasMoved = true;
