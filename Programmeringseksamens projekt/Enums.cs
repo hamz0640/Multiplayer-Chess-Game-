@@ -12,9 +12,11 @@ namespace Programmeringseksamens_projekt
 		{
 			Move,
 			Resign,
-			Draw,
+			OfferDraw,
+			AcceptDraw,
+			DeclineDraw,
 		}
-    public enum PieceColor
+		public enum PieceColor
 		{
 			White,
 			Black
@@ -28,13 +30,21 @@ namespace Programmeringseksamens_projekt
 			Queen,
 			King
 		}
-		public enum  MoveType
+		public enum MoveType
 		{
 			Normal,
 			EnPassant,
 			Promotion,
 			CastlingKingside,
 			CastlingQueenside
+		}
+
+		public enum WinResult
+		{
+			None,
+			WhiteWin,
+			BlackWin,
+			Stalemate,
 		}
 	}
 }

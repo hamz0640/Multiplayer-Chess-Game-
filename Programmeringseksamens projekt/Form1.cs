@@ -25,305 +25,33 @@ namespace Programmeringseksamens_projekt
 
         (int row, int col)? selectedPiece = null;
 
-        Network network = new Network();
-        Board board = new Board();
+        Network Network;
+        Board Board;
+        SyncBoard SyncBoard;
 
         const int SQUARE_SIZE = 43;
 
         const int BoardOffset = 100;
 
-        Enums.PieceColor PlayerColer = Enums.PieceColor.White;
-
         public Form1()
         {
             InitializeComponent();
-            InitializePieces();
-            DrawCoordinates(PlayerColer);
-            board.SetupStartingPosition();
-            foreach (Control control in Controls)
-            {
-                control.MouseClick += HandleClick;
-            }
-        }
 
-        private void ToggleHighlight(int row, int col, bool highlighted)
-        {
-            Color color;
-            if (SquareIsWhite((row, col)))
-                color = highlighted ? Color.Orange : Color.SandyBrown;
-            else
-                color = highlighted ? Color.Chocolate : Color.Sienna;
-
-            BoardPanels[(row, col)].BackColor = color;
-            if (Pieces.ContainsKey((row, col)))
-            {
-                Pieces[(row, col)].BackColor = color;
-            }
-        }
-
-        private void HandleClick(object sender, MouseEventArgs e)
-        {
-            if (!network.IsStarted)
-                return;
-
-            int clickCol = e.X + ((Control)sender).Location.X;
-            int clickRow = e.Y + ((Control)sender).Location.Y;
-
-            clickCol = (clickCol - BoardOffset) / SQUARE_SIZE;
-            clickRow = 7 - (clickRow - BoardOffset) / SQUARE_SIZE;
-
-            if (clickCol < 0 || clickCol >= 8 || clickRow < 0 || clickRow >= 8)
-                return;
-
-            if (selectedPiece != null)
-            {
-                for (int i = 0; i < 64; i++)
-                {
-                    ToggleHighlight(i % 8, (i / 8) % 8, false);
-                }
-
-                Piece pieceAt = board.Grid[selectedPiece.Value.row, selectedPiece.Value.col];
-
-                if (pieceAt == null)
-                    return;
-
-                if (pieceAt.Color != board.CurrentTurn)
-                {
-                    selectedPiece = null;
-                    return;
-                }
-
-                foreach (Move move in board.GetAllLegalMoves(pieceAt.Color))
-                {
-                    if (move.From.col == move.To.col && move.From.row == move.To.row)
-                        continue;
-
-                    if (move.From.col != selectedPiece.Value.col || move.From.row != selectedPiece.Value.row)
-                        continue;
-
-                    if (move.To.col != clickCol || move.To.row != clickRow)
-                        continue;
-
-
-                    RegisterCapture(move);   
-                    board.ApplyMove(move);
-                    MovePieceVisual(move);
-                    ShowCapturedPieces();
-
-                    List<byte> bytes = new List<byte>();
-
-                    bytes.AddRange(BitConverter.GetBytes((byte)Enums.MessageType.Move));
-                    bytes.AddRange(BitConverter.GetBytes(move.From.row));
-                    bytes.AddRange(BitConverter.GetBytes(move.From.col));
-                    bytes.AddRange(BitConverter.GetBytes(move.To.row));
-                    bytes.AddRange(BitConverter.GetBytes(move.To.col));
-                    bytes.AddRange(BitConverter.GetBytes((byte)move.Type));
-                    bytes.AddRange(BitConverter.GetBytes(move.PromotionPiece != null));
-                    if (move.PromotionPiece != null)
-                        bytes.AddRange(BitConverter.GetBytes((byte)move.PromotionPiece.Value));
-                    else
-                        bytes.Add(0);
-
-
-                    network.Send(bytes.ToArray());
-
-                    break;
-                }
-
-                selectedPiece = null;
-            }
-            else
-            {
-                if (!Pieces.ContainsKey((clickRow, clickCol)))
-                    return;
-
-                ToggleHighlight(clickRow, clickCol, true);
-                selectedPiece = (clickRow, clickCol);
-
-                Piece pieceAt = board.Grid[clickRow, clickCol];
-
-                if (pieceAt == null || pieceAt.Color != board.CurrentTurn)
-                    return;
-
-                foreach (Move move in board.GetAllLegalMoves(pieceAt.Color))
-                {
-                    if (move.From.col != clickCol || move.From.row != clickRow)
-                        continue;
-
-                    ToggleHighlight(move.To.row, move.To.col, true);
-                }
-            }
-        }
-
-        private void InitializePieces()
-        {
-            for (int row = 7; row >= 0; row--)
-            {
-                for (int col = 0; col < 8; col++)
-                {
-                    Panel panel = new Panel();
-                    panel.Size = new Size(SQUARE_SIZE, SQUARE_SIZE);
-                    panel.Location = new Point(BoardOffset + col * SQUARE_SIZE, BoardOffset + (7 - row) * SQUARE_SIZE);
-                    panel.BackColor = GetSquareColor((row, col));
-
-                    BoardPanels[(row, col)] = panel;
-                    Controls.Add(panel);
-                }
-            }
-
-            for (int col = 0; col < 8; col++)
-            {
-                AddPiece(1, col, Properties.Resources.wP);
-                AddPiece(6, col, Properties.Resources.bP);
-            }
-
-            AddPiece(0, 0, Properties.Resources.wR);
-            AddPiece(0, 1, Properties.Resources.wN);
-            AddPiece(0, 2, Properties.Resources.wB);
-            AddPiece(0, 3, Properties.Resources.wQ);
-            AddPiece(0, 4, Properties.Resources.wK);
-            AddPiece(0, 5, Properties.Resources.wB);
-            AddPiece(0, 6, Properties.Resources.wN);
-            AddPiece(0, 7, Properties.Resources.wR);
-
-            AddPiece(7, 0, Properties.Resources.bR);
-            AddPiece(7, 1, Properties.Resources.bN);
-            AddPiece(7, 2, Properties.Resources.bB);
-            AddPiece(7, 3, Properties.Resources.bQ);
-            AddPiece(7, 4, Properties.Resources.bK);
-            AddPiece(7, 5, Properties.Resources.bB);
-            AddPiece(7, 6, Properties.Resources.bN);
-            AddPiece(7, 7, Properties.Resources.bR);
-        }
-
-        private void DrawCoordinates(Enums.PieceColor PlayerColor)
-        {
+            moveList.Columns.Add("White");
+            moveList.Columns.Add("Black");            
             
-            // Draw Letters
-            for (int i = 0; i < 8; i++)
-            {
-                Label LetterLabel = new Label();
-                LetterLabel.Text = PlayerColor == Enums.PieceColor.White ? "" + (char)(i+65) : "" + (char)(72 - i);
-                LetterLabel.Width = SQUARE_SIZE;
-                LetterLabel.TextAlign = ContentAlignment.MiddleCenter;
-                LetterLabel.Location = new Point(BoardOffset + i * SQUARE_SIZE,BoardOffset + (7 * SQUARE_SIZE) + SQUARE_SIZE);
-                LetterLabel.BackColor = Color.Transparent;
-                LetterLabel.ForeColor = Color.White;
-                Controls.Add(LetterLabel);
-            }
+            Board = new Board();
+            Board.SetupStartingPosition();
 
-            // Draw Numbers 
-            for (int i = 0; i < 8; i++)
-            {
-                Label LetterLabel = new Label();
-                LetterLabel.Text = PlayerColor == Enums.PieceColor.White ? "" + (char)(56 - i) : "" + (char)(i + 49) ;
-                LetterLabel.Width = SQUARE_SIZE;
-                LetterLabel.Height = SQUARE_SIZE;
-                LetterLabel.TextAlign = ContentAlignment.MiddleCenter;
-                LetterLabel.Location = new Point(BoardOffset + (7 * SQUARE_SIZE) + SQUARE_SIZE, BoardOffset + (i * SQUARE_SIZE));
-                LetterLabel.BackColor = Color.Transparent;
-                LetterLabel.ForeColor = Color.White;
-                Controls.Add(LetterLabel);
-            }
+            Network = new Network();
 
-        }
-
-        private bool SquareIsWhite((int row, int col) position)
-        {
-            return ((position.col + (position.row % 2 == 0 ? 1 : 0)) % 2 == 0);
-        }
-
-        private Color GetSquareColor((int row, int col) position)
-        {
-            if (SquareIsWhite(position))
-                return Color.SandyBrown;
-
-            else
-                return Color.Sienna;
-        }
-
-        private void MovePieceVisual(Move move)
-        {
-
-            PictureBox piece = Pieces[move.From];
-            Pieces.Remove(move.From);
-
-            PlaceVisually(piece, move.To);
-            if (Pieces.ContainsKey(move.To))
-            {
-                Controls.Remove(Pieces[move.To]);
-            }
-
-            Pieces[move.To] = piece;
-
-
-            piece.BackColor = GetSquareColor(move.To);
-
-            if (move.Type == Enums.MoveType.CastlingKingside)
-            {
-                (int, int) rookFromPosition = board.CurrentTurn == Enums.PieceColor.White ? (7, 7) : (0, 7);
-                (int, int) rookToPosition = board.CurrentTurn == Enums.PieceColor.White ? (7, 5) : (0, 5);
-
-                PictureBox rook = Pieces[rookFromPosition];
-                PlaceVisually(rook, rookToPosition);
-                Pieces[rookToPosition] = rook;
-                Pieces.Remove(rookFromPosition);
-            }
-
-            if (move.Type == Enums.MoveType.CastlingQueenside)
-            {
-                (int, int) rookFromPosition = board.CurrentTurn == Enums.PieceColor.White ? (7, 0) : (0, 0);
-                (int, int) rookToPosition = board.CurrentTurn == Enums.PieceColor.White ? (7, 3) : (0, 3);
-
-                PictureBox rook = Pieces[rookFromPosition];
-                PlaceVisually(rook, rookToPosition);
-                Pieces[rookToPosition] = rook;
-                Pieces.Remove(rookFromPosition);
-            }
-
-            if (move.Type == Enums.MoveType.EnPassant)
-            {
-                Controls.Remove(Pieces[(move.From.row, move.To.col)]);
-                Pieces.Remove((move.From.row, move.To.col));
-                Debug.Print("Enpassant");
-            }
-        }
-
-        private void PlaceVisually(PictureBox piece, (int row, int col) position)
-        {
-            piece.Location = new Point(
-                BoardOffset + position.col * SQUARE_SIZE,
-                BoardOffset + (7 - position.row) * SQUARE_SIZE
-            );
-
-            piece.BackColor = GetSquareColor(position);
-        }
-
-        private PictureBox AddPiece(int row, int col, Image pieceImage)
-        {
-            PictureBox piece = new PictureBox();
-            piece.Image = pieceImage;
-            piece.Size = new Size(SQUARE_SIZE, SQUARE_SIZE);
-            piece.Location = new Point(
-                BoardOffset + col * SQUARE_SIZE,
-                BoardOffset + (7 - row) * SQUARE_SIZE
-            );
-            piece.SizeMode = PictureBoxSizeMode.CenterImage;
-            piece.BackColor = GetSquareColor((row, col));
-
-            Controls.Add(piece);
-            piece.BringToFront();
-            Pieces[(row, col)] = piece;
-
-            return piece;
+            SyncBoard = new SyncBoard(Board, Network, this, Controls);
         }
 
         private void joinButton_Click(object sender, EventArgs e)
         {
-            if (network.IsStarted)
-            {
+            if (Network.IsStarted)
                 return;
-            }
 
             string ipString = ipEnterField.Text;
             IPAddress ip = IPAddress.None;
@@ -338,63 +66,136 @@ namespace Programmeringseksamens_projekt
                 ipEnterField.BackColor = Color.White;
             }
 
-            Task join = network.Connect(ipString);
+            Text = "Multiplayer Chess Game (Client)";
+
+            SyncBoard.Start(Enums.PieceColor.Black);
+
+            Task join = Network.Connect(ipString);
         }
 
         private void hostButton_Click(object sender, EventArgs e)
         {
-            if (network.IsStarted)
-            {
+            if (Network.IsStarted)
                 return;
-            }
 
-            Task start = network.StartServer();
+            Text = "Multiplayer Chess Game (Host)";
+
+            SyncBoard.Start(Enums.PieceColor.White);
+
+            Task start = Network.StartServer();
+        }
+
+        private void resignButton_Click(object sender, EventArgs e)
+        {
+            if (Network.IsConnected == false)
+                return;
+
+            byte[] bytes = Message.Encode(Enums.MessageType.Resign);
+            Network.Send(bytes);
+
+            ResetAll();
+        }
+
+        private void drawButton_Click(object sender, EventArgs e)
+        {
+            if (!Network.IsConnected)
+                return;
+
+            byte[] bytes = Message.Encode(Enums.MessageType.OfferDraw);
+            Network.Send(bytes);
         }
 
         private async void checkNetworkTimerTick(object sender, EventArgs e)
         {
-            if (!network.IsStarted)
+            if (!Network.IsStarted)
                 return;
 
-            if (!network.BytesAvailable())
+            if (!Network.BytesAvailable())
                 return;
 
-            var bytes = await network.Read();
-            var messageType = (Enums.MessageType)BitConverter.ToChar(bytes, 0);
+            var bytes = await Network.Read();
+            var messageType = Message.GetType(bytes);
 
-            switch (messageType)
+            if (messageType == Enums.MessageType.Move)
             {
-                case Enums.MessageType.Move:
-                    (int, int) from = (
-                        BitConverter.ToInt32(bytes, 2),
-                        BitConverter.ToInt32(bytes, 6)
-                    );
+                Move move = Message.DecodeMove(bytes);
+                
+                Board.ApplyMove(move);
+                CurrentTurn.Text = Board.CurrentTurn.ToString() + " To Move";
+                SyncBoard.MovePieceVisual(move);
 
-                    (int, int) to = (
-                        BitConverter.ToInt32(bytes, 10),
-                        BitConverter.ToInt32(bytes, 14)
-                    );
+                RegisterCapture(move);
+                ShowCapturedPieces();
 
-                    var moveType = (Enums.MoveType)BitConverter.ToChar(bytes, 18);
+                UpdateMoveList(move);
 
-                    bool isPromoting = BitConverter.ToBoolean(bytes, 19);
-                    Enums.PieceType pieceType = (Enums.PieceType)BitConverter.ToChar(bytes, 20);
+                Enums.WinResult winResult = Board.GetWinResult();
+                if (winResult != Enums.WinResult.None)
+                {
+                    if (winResult == Enums.WinResult.WhiteWin)
+                        MessageBox.Show("White won!");
 
-                    Move move = new Move(from, to, moveType);
-                    if (isPromoting)
-                        move.PromotionPiece = pieceType;
+                    if (winResult == Enums.WinResult.BlackWin)
+                        MessageBox.Show("Black won!");
 
-                    RegisterCapture(move);
-                    board.ApplyMove(move);
-                    MovePieceVisual(move);
-                    ShowCapturedPieces();
-                    break;
+                    if (winResult == Enums.WinResult.Stalemate)
+                        MessageBox.Show("The match ended in a stalemate");
+
+                    ResetAll();
+                }
+            }
+
+            if (messageType == Enums.MessageType.Resign)
+            {
+                ResetAll();
+            }
+
+            if (messageType == Enums.MessageType.OfferDraw)
+            {
+                string message = "The other player has offered a draw. Do you accept?";
+                string caption = "Draw offer";
+                MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+
+                DialogResult result = MessageBox.Show(message, caption, buttons);
+
+                if (result == DialogResult.Yes)
+                {
+                    Network.Send(Message.Encode(Enums.MessageType.AcceptDraw));
+                    ResetAll();
+                }
+                else
+                {
+                    Network.Send(Message.Encode(Enums.MessageType.DeclineDraw));
+                }
+            }
+
+            if (messageType == Enums.MessageType.AcceptDraw)
+            {
+                ResetAll();
+            }
+
+            if (messageType == Enums.MessageType.DeclineDraw)
+            {
+                string message = "The other player declined the draw";
+                string caption = "Draw offer";
+                MessageBox.Show(message, caption);
             }
         }
 
-       
+        public void ResetAll()
+        {
+            Text = "Multiplayer Chess Game";
 
-        private void ShowCapturedPieces()
+            Network.Close();
+            Network = new Network();
+            Board = new Board();
+            Board.SetupStartingPosition();
+
+            SyncBoard.Reset();
+            SyncBoard = new SyncBoard(Board, Network, this, Controls);
+        } 
+
+        public void ShowCapturedPieces()
         {
             foreach (var entry in CapturedPiecesBlack)
             {
@@ -414,9 +215,9 @@ namespace Programmeringseksamens_projekt
             }
         }
 
-        private void RegisterCapture(Move move)
+        public void RegisterCapture(Move move)
         {
-            Piece capturedPiece = board.Grid[move.To.row, move.To.col];
+            Piece capturedPiece = Board.Grid[move.To.row, move.To.col];
 
             if (capturedPiece == null)
                 return;
@@ -432,6 +233,26 @@ namespace Programmeringseksamens_projekt
                 dict[type]++;
             else
                 dict[type] = 1;
+        }
+
+        public void SetMove() { CurrentTurn.Text = Board.CurrentTurn.ToString() + " To Move"; }
+
+        public void UpdateMoveList(Move move)
+        {
+            if (moveList.Items.Count == 0)
+            {
+                var newItem = new ListViewItem(move.From.ToString() + " -> " + move.To.ToString());
+                moveList.Items.Add(newItem);
+            }
+            else if (moveList.Items[moveList.Items.Count - 1].SubItems[0] == null)
+            {
+                moveList.Items[-1].SubItems.Add(move.From.ToString() + " -> " + move.To.ToString());
+            }
+            else
+            {
+                var newItem = new ListViewItem(move.From.ToString() + " -> " + move.To.ToString());
+                moveList.Items.Add(newItem);
+            }
         }
     }
 }

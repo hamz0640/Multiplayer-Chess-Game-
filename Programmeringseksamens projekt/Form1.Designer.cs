@@ -32,7 +32,7 @@
             this.hostButton = new System.Windows.Forms.Button();
             this.ipEnterField = new System.Windows.Forms.TextBox();
             this.joinField = new System.Windows.Forms.Button();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.moveList = new System.Windows.Forms.ListView();
             this.checkNetworkTimer = new System.Windows.Forms.Timer(this.components);
             this.MoveHistoryBackground = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -90,6 +90,7 @@
             this.ipEnterField.Name = "ipEnterField";
             this.ipEnterField.Size = new System.Drawing.Size(219, 18);
             this.ipEnterField.TabIndex = 0;
+            this.ipEnterField.Text = "127.0.0.1";
             // 
             // joinField
             // 
@@ -107,16 +108,16 @@
             this.joinField.UseVisualStyleBackColor = false;
             this.joinField.Click += new System.EventHandler(this.joinButton_Click);
             // 
-            // listView1
+            // moveList
             // 
-            this.listView1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(500, 213);
-            this.listView1.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(192, 194);
-            this.listView1.TabIndex = 5;
-            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.moveList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.moveList.HideSelection = false;
+            this.moveList.Location = new System.Drawing.Point(500, 213);
+            this.moveList.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.moveList.Name = "moveList";
+            this.moveList.Size = new System.Drawing.Size(192, 194);
+            this.moveList.TabIndex = 5;
+            this.moveList.UseCompatibleStateImageBehavior = false;
             // 
             // checkNetworkTimer
             // 
@@ -159,6 +160,7 @@
             this.resignButton.Size = new System.Drawing.Size(50, 42);
             this.resignButton.TabIndex = 4;
             this.resignButton.UseVisualStyleBackColor = false;
+            this.resignButton.Click += new System.EventHandler(this.resignButton_Click);
             // 
             // drawButton
             // 
@@ -173,6 +175,7 @@
             this.drawButton.Size = new System.Drawing.Size(52, 42);
             this.drawButton.TabIndex = 3;
             this.drawButton.UseVisualStyleBackColor = false;
+            this.drawButton.Click += new System.EventHandler(this.drawButton_Click);
             // 
             // CurrentTurn
             // 
@@ -499,7 +502,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.CurrentTurn);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.moveList);
             this.Controls.Add(this.resignButton);
             this.Controls.Add(this.drawButton);
             this.Controls.Add(this.joinField);
@@ -510,7 +513,7 @@
             this.ForeColor = System.Drawing.SystemColors.Control;
             this.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Multiplayer Chess Game";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -523,7 +526,7 @@
         private System.Windows.Forms.Button joinField;
         private System.Windows.Forms.Button drawButton;
         private System.Windows.Forms.Button resignButton;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView moveList;
         private System.Windows.Forms.Timer checkNetworkTimer;
         private System.Windows.Forms.Label MoveHistoryBackground;
         private System.Windows.Forms.Label label2;

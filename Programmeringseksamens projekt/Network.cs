@@ -15,6 +15,7 @@ namespace Programmeringseksamens_projekt
 		private TcpClient Client;
 		private NetworkStream Stream;
 		public bool IsStarted { get; private set; } = false;
+		public bool IsConnected { get; private set; } = false;
 		public Network()
 		{
 
@@ -30,7 +31,9 @@ namespace Programmeringseksamens_projekt
 			Client = await Listener.AcceptTcpClientAsync();
 			Stream = Client.GetStream();
 
-			Debug.WriteLine("Client connected.");
+			IsConnected = true;
+
+            Debug.WriteLine("Client connected.");
 			return;
 		}
 
@@ -41,10 +44,33 @@ namespace Programmeringseksamens_projekt
 
 			Stream = Client.GetStream();
 			IsStarted = true;
+			IsConnected = true;
 
-			Debug.WriteLine("Connected to server.");
+
+            Debug.WriteLine("Connected to server.");
 			return;
 		}
+
+		public async Task Close()
+		{
+            if (Stream != null)
+            {
+                Stream.Close();
+                Stream = null;
+            }
+
+            if (Client != null)
+            {
+                Client.Close();
+                Client = null;
+            }
+
+            if (Listener != null)
+            {
+                Listener.Stop();
+                Listener = null;
+            }
+        }
 
 		public async Task Send(byte[] data)
 		{

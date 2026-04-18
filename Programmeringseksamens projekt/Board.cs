@@ -53,9 +53,9 @@ namespace Programmeringseksamens_projekt
 
 					if (piece.Type == PieceType.King)
 					{
-                        if (piece.Color == PieceColor.White) { WhiteCanCastleKingside = false; WhiteCanCastleQueenside = false; }
-                        else { BlackCanCastleKingside = false; BlackCanCastleQueenside = false; }
-                    }
+						if (piece.Color == PieceColor.White) { WhiteCanCastleKingside = false; WhiteCanCastleQueenside = false; }
+						else { BlackCanCastleKingside = false; BlackCanCastleQueenside = false; }
+					}
 					
 					break;
 				case MoveType.CastlingKingside:
@@ -132,21 +132,21 @@ namespace Programmeringseksamens_projekt
 
 			// Flip turn
 			CurrentTurn = CurrentTurn == PieceColor.White ? PieceColor.Black : PieceColor.White;
+		}
 
-			if (!_isSimulating)
+		public WinResult GetWinResult()
+		{
+			if (IsInCheck(CurrentTurn) && GetAllLegalMoves(CurrentTurn).Count == 0)
 			{
-				if (IsInCheck(CurrentTurn))
-				{
-					if (GetAllLegalMoves(CurrentTurn).Count == 0)
-						MessageBox.Show($"Checkmate! {(CurrentTurn == PieceColor.White ? "Black" : "White")} wins!");
-				}
-				else
-				{
-					if (GetAllLegalMoves(CurrentTurn).Count == 0)
-						MessageBox.Show("Stalemate! It's a draw.");
-				}
+				return CurrentTurn == PieceColor.White ? WinResult.BlackWin : WinResult.WhiteWin;
+			}
+			else
+			{
+				if (GetAllLegalMoves(CurrentTurn).Count == 0)
+					return WinResult.Stalemate;
 			}
 
+			return WinResult.None;
 		}
 
 		public void UndoMove()
@@ -160,18 +160,18 @@ namespace Programmeringseksamens_projekt
 			switch (move.Type)
 			{
 				case MoveType.Normal:
-                    Piece piece = Grid[move.To.row, move.To.col];
-                    Grid[move.From.row, move.From.col] = piece;
-                    Grid[move.To.row, move.To.col] = record.CapturedPiece;
-                    piece.Position = (move.From.row, move.From.col);
-                    piece.HasMoved = record.PieceHadMoved;
-                    break;
-                case MoveType.Promotion:
-                    Grid[move.From.row, move.From.col] = new Pawn(MoveHistory.Count % 2 == 0 ? PieceColor.White : PieceColor.Black, (move.From.row, move.From.col));
-                    Grid[move.From.row, move.From.col].HasMoved = record.PieceHadMoved;
-                    Grid[move.To.row, move.To.col] = record.CapturedPiece;
-                    break;
-                case MoveType.EnPassant:
+					Piece piece = Grid[move.To.row, move.To.col];
+					Grid[move.From.row, move.From.col] = piece;
+					Grid[move.To.row, move.To.col] = record.CapturedPiece;
+					piece.Position = (move.From.row, move.From.col);
+					piece.HasMoved = record.PieceHadMoved;
+					break;
+				case MoveType.Promotion:
+					Grid[move.From.row, move.From.col] = new Pawn(MoveHistory.Count % 2 == 0 ? PieceColor.White : PieceColor.Black, (move.From.row, move.From.col));
+					Grid[move.From.row, move.From.col].HasMoved = record.PieceHadMoved;
+					Grid[move.To.row, move.To.col] = record.CapturedPiece;
+					break;
+				case MoveType.EnPassant:
 					Piece epPawn = Grid[move.To.row, move.To.col];
 					Grid[move.From.row, move.From.col] = epPawn;
 					Grid[move.To.row, move.To.col] = null;
@@ -280,34 +280,34 @@ namespace Programmeringseksamens_projekt
 
 		public List<Move> GetAllLegalMoves(PieceColor pieceColor)
 		{
-            List<Move> legal = new List<Move>();
-            _isSimulating = true;
-            foreach (Move m in GetRawMoves(pieceColor)) 
-            {
-                ApplyMove(m);
-                if (!IsInCheck(pieceColor))
-                    legal.Add(m);
-                UndoMove();
-            }
+			List<Move> legal = new List<Move>();
+			_isSimulating = true;
+			foreach (Move m in GetRawMoves(pieceColor)) 
+			{
+				ApplyMove(m);
+				if (!IsInCheck(pieceColor))
+					legal.Add(m);
+				UndoMove();
+			}
 
-            (int row, int col) kingPos = pieceColor == PieceColor.White ? (0, 4) : (7, 4);
-            Piece kingPiece = Grid[kingPos.row, kingPos.col];
-            if (kingPiece is King k)
-            {
-                foreach (Move m in k.GetLegalMoves(this, true)
-                                    .Where(m => m.Type == MoveType.CastlingKingside
-                                             || m.Type == MoveType.CastlingQueenside))
-                {
-                    ApplyMove(m);
-                    if (!IsInCheck(pieceColor))
-                        legal.Add(m);
-                    UndoMove();
-                }
-            }
+			(int row, int col) kingPos = pieceColor == PieceColor.White ? (0, 4) : (7, 4);
+			Piece kingPiece = Grid[kingPos.row, kingPos.col];
+			if (kingPiece is King k)
+			{
+				foreach (Move m in k.GetLegalMoves(this, true)
+									.Where(m => m.Type == MoveType.CastlingKingside
+											 || m.Type == MoveType.CastlingQueenside))
+				{
+					ApplyMove(m);
+					if (!IsInCheck(pieceColor))
+						legal.Add(m);
+					UndoMove();
+				}
+			}
 
-            _isSimulating = false;
-            return legal;
-        }
+			_isSimulating = false;
+			return legal;
+		}
 
 		public List<Move> GetRawMoves(PieceColor color)
 		{
@@ -319,9 +319,9 @@ namespace Programmeringseksamens_projekt
 					Piece piece = Grid[row, col];
 					if (piece != null && piece.Color == color)
 					{
-                        rawMoves.AddRange(piece is King king? king.GetLegalMoves(this,false) : piece.GetLegalMoves(this));
+						rawMoves.AddRange(piece is King king? king.GetLegalMoves(this,false) : piece.GetLegalMoves(this));
 
-                    }
+					}
 				}
 			}
 			return rawMoves;
