@@ -66,7 +66,7 @@ namespace Programmeringseksamens_projekt
                 ipEnterField.BackColor = Color.White;
             }
 
-            Text = "Multiplayer Chess Game (Client)";
+            Text = "Ultimate Chess Pro 2026 ♔ (Client)";
 
             SyncBoard.Start(Enums.PieceColor.Black);
 
@@ -78,7 +78,7 @@ namespace Programmeringseksamens_projekt
             if (Network.IsStarted)
                 return;
 
-            Text = "Multiplayer Chess Game (Host)";
+            Text = "Ultimate Chess Pro 2026 ♔ (Host)";
 
             SyncBoard.Start(Enums.PieceColor.White);
 
@@ -184,7 +184,7 @@ namespace Programmeringseksamens_projekt
 
         public void ResetAll()
         {
-            Text = "Multiplayer Chess Game";
+            Text = "Ultimate Chess Pro 2026 ♔";
 
             Network.Close();
             Network = new Network();
@@ -193,6 +193,9 @@ namespace Programmeringseksamens_projekt
 
             SyncBoard.Reset();
             SyncBoard = new SyncBoard(Board, Network, this, Controls);
+
+            CapturedPiecesWhite = new Dictionary<Enums.PieceType, int>();
+            CapturedPiecesBlack = new Dictionary<Enums.PieceType, int>();
         } 
 
         public void ShowCapturedPieces()
