@@ -119,12 +119,13 @@ namespace Programmeringseksamens_projekt
             if (messageType == Enums.MessageType.Move)
             {
                 Move move = Message.DecodeMove(bytes);
-                
+            
+
+                RegisterCapture(move);
                 Board.ApplyMove(move);
                 CurrentTurn.Text = Board.CurrentTurn.ToString() + " To Move";
                 SyncBoard.MovePieceVisual(move);
 
-                RegisterCapture(move);
                 ShowCapturedPieces();
 
                 UpdateMoveList(move);
