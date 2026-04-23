@@ -37,19 +37,38 @@ namespace Programmeringseksamens_projekt
 			return;
 		}
 
-		public async Task Connect(string ip)
+		public async Task<bool> Connect(string ip)
 		{
-			Client = new TcpClient();
-			await Client.ConnectAsync(ip, 2026);
+            Client = new TcpClient();
 
-			Stream = Client.GetStream();
-			IsStarted = true;
-			IsConnected = true;
+            Task connectTask = Client.ConnectAsync(ip, 2026);
+            Task timeoutTask = Task.Delay(3000);
 
+            Task completed = await Task.WhenAny(connectTask, timeoutTask);
 
-            Debug.WriteLine("Connected to server.");
-			return;
-		}
+            if (completed == timeoutTask)
+            {
+                Debug.Print("Timed out");
+                return false;
+            }
+
+            try
+            {
+                await connectTask;
+
+                Stream = Client.GetStream();
+                IsStarted = true;
+                IsConnected = true;
+
+                Debug.WriteLine("Connected to server.");
+                return true;
+            }
+            catch (SocketException)
+            {
+                Debug.WriteLine("Connection failed.");
+                return false;
+            }
+        }
 
 		public async Task Close()
 		{

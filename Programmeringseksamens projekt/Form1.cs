@@ -48,7 +48,7 @@ namespace Programmeringseksamens_projekt
             SyncBoard = new SyncBoard(Board, Network, this, Controls);
         }
 
-        private void joinButton_Click(object sender, EventArgs e)
+        async private void joinButton_Click(object sender, EventArgs e)
         {
             if (Network.IsStarted)
                 return;
@@ -66,11 +66,19 @@ namespace Programmeringseksamens_projekt
                 ipEnterField.BackColor = Color.White;
             }
 
-            Text = "Ultimate Chess Pro 2026 ♔ (Client)";
+            
 
-            SyncBoard.Start(Enums.PieceColor.Black);
+            bool joinResult = await Network.Connect(ipString);
 
-            Task join = Network.Connect(ipString);
+            if (joinResult == true)
+            {
+                Text = "Ultimate Chess Pro 2026 ♔ (Client)";
+                SyncBoard.Start(Enums.PieceColor.Black);
+            }
+            else
+            {
+                MessageBox.Show("Connection to host failed. Is there a host to connect to?");
+            }
         }
 
         private void hostButton_Click(object sender, EventArgs e)
@@ -197,6 +205,18 @@ namespace Programmeringseksamens_projekt
 
             CapturedPiecesWhite = new Dictionary<Enums.PieceType, int>();
             CapturedPiecesBlack = new Dictionary<Enums.PieceType, int>();
+
+            BpC.Text = "x0";
+            BnC.Text = "x0";
+            BbC.Text = "x0";
+            BrC.Text = "x0";
+            BqC.Text = "x0";
+
+            WpC.Text = "x0";
+            WnC.Text = "x0";
+            WbC.Text = "x0";
+            WrC.Text = "x0";
+            WqC.Text = "x0";
         } 
 
         public void ShowCapturedPieces()
