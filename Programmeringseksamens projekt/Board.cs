@@ -152,16 +152,21 @@ namespace Programmeringseksamens_projekt
 			uint bishopCount = 0;
 			foreach (Piece piece in Grid)
 			{
-				pieceCount += 1;
-				if (piece.Type == PieceType.Knight)
+                if (piece != null) pieceCount += 1;
+
+				if (piece != null && piece.Type == PieceType.Knight) 
 				{
 					if (piece.Color == PieceColor.White) whiteKnightCount += 1;
 					else blackKnightCount += 1;
 				}
-				if (piece.Type == PieceType.Bishop) bishopCount += 1;
+				if (piece != null && piece.Type == PieceType.Bishop) bishopCount += 1;
+
 			}
 
-			if (pieceCount == 2) return WinResult.Draw;
+			if (pieceCount == 2)
+			{
+				return WinResult.Draw;
+			}
 
 			if (pieceCount == 3)
 			{
