@@ -152,7 +152,15 @@ namespace Programmeringseksamens_projekt
 				Pieces.Remove((move.From.row, move.To.col));
 				Debug.Print("Enpassant");
 			}
-		}
+
+            if (move.Type == Enums.MoveType.Promotion)
+            {
+                Image newImage = Board.Grid[move.To.row, move.To.col].Color == Enums.PieceColor.White
+                    ? GetWhitePromotionImage(move.PromotionPiece)
+                    : GetBlackPromotionImage(move.PromotionPiece);
+                Pieces[move.To].Image = newImage;
+            }
+        }
 
 		private void PlaceVisually(PictureBox piece, (int row, int col) position)
 		{
@@ -343,11 +351,18 @@ namespace Programmeringseksamens_projekt
 
 					if (move.To.col != clickCol || move.To.row != clickRow)
 						continue;
+                    
+					if (move.Type == Enums.MoveType.Promotion)
+                    {
+                        Enums.PieceType chosen = AskPromotionPiece();
+						move.PromotionPiece = chosen;
+                    }
+
+                    Form.RegisterCapture(move);
+                    Board.ApplyMove(move);
+                    MovePieceVisual(move);
 
 
-					Form.RegisterCapture(move);
-					Board.ApplyMove(move);
-					MovePieceVisual(move);
 					Form.ShowCapturedPieces();
 
 					byte[] bytes = Message.Encode(move);
@@ -398,5 +413,73 @@ namespace Programmeringseksamens_projekt
 				}
 			}
 		}
-	}
+
+        private Enums.PieceType AskPromotionPiece()
+        {
+            string[] options = { "Queen", "Rook", "Bishop", "Knight" };
+
+            using (Form dialog = new Form())
+            {
+                dialog.Text = "Promotion";
+                dialog.Size = new Size(220, 180);
+                dialog.FormBorderStyle = FormBorderStyle.FixedDialog;
+                dialog.StartPosition = FormStartPosition.CenterParent;
+                dialog.MaximizeBox = false;
+                dialog.MinimizeBox = false;
+
+                Label label = new Label();
+                label.Text = "Choose promotion piece:";
+                label.Location = new Point(10, 10);
+                label.AutoSize = true;
+                dialog.Controls.Add(label);
+
+                ComboBox combo = new ComboBox();
+                combo.Items.AddRange(options);
+                combo.SelectedIndex = 0;
+                combo.DropDownStyle = ComboBoxStyle.DropDownList;
+                combo.Location = new Point(10, 40);
+                combo.Width = 180;
+                dialog.Controls.Add(combo);
+
+                Button confirm = new Button();
+                confirm.Text = "Confirm";
+                confirm.Location = new Point(10, 80);
+                confirm.Width = 180;
+                confirm.Click += (s, e) => dialog.Close();
+                dialog.Controls.Add(confirm);
+
+                dialog.ShowDialog();
+
+                switch (combo.SelectedItem.ToString())
+                {
+                    case "Rook": return Enums.PieceType.Rook;
+                    case "Bishop": return Enums.PieceType.Bishop;
+                    case "Knight": return Enums.PieceType.Knight;
+                    default: return Enums.PieceType.Queen;
+                }
+            }
+        }
+
+        private Image GetWhitePromotionImage(Enums.PieceType? type)
+        {
+            switch (type)
+            {
+                case Enums.PieceType.Rook: return Properties.Resources.wR;
+                case Enums.PieceType.Bishop: return Properties.Resources.wB;
+                case Enums.PieceType.Knight: return Properties.Resources.wN;
+                default: return Properties.Resources.wQ;
+            }
+        }
+
+        private Image GetBlackPromotionImage(Enums.PieceType? type)
+        {
+            switch (type)
+            {
+                case Enums.PieceType.Rook: return Properties.Resources.bR;
+                case Enums.PieceType.Bishop: return Properties.Resources.bB;
+                case Enums.PieceType.Knight: return Properties.Resources.bN;
+                default: return Properties.Resources.bQ;
+            }
+        }
+    }
 }
