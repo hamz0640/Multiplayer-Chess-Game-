@@ -356,22 +356,22 @@ namespace Programmeringseksamens_projekt
 					Form.SetMove();
 					Form.UpdateMoveList(move);
 
-                    Enums.WinResult winResult = Board.GetWinResult();
-                    if (winResult != Enums.WinResult.None)
-                    {
-                        if (winResult == Enums.WinResult.WhiteWin)
-                            MessageBox.Show("White won!");
+					Enums.WinResult winResult = Board.GetWinResult();
+					if (winResult != Enums.WinResult.None)
+					{
+						if (winResult == Enums.WinResult.WhiteWin)
+							MessageBox.Show("White won!");
+						if (winResult == Enums.WinResult.BlackWin)
+							MessageBox.Show("Black won!");
+						if (winResult == Enums.WinResult.Stalemate)
+							MessageBox.Show("The match ended in a stalemate");
+						if (winResult == Enums.WinResult.Draw)
+							MessageBox.Show("The match ended in a draw");
 
-                        if (winResult == Enums.WinResult.BlackWin)
-                            MessageBox.Show("Black won!");
+						Form.ResetAll();
+					}
 
-                        if (winResult == Enums.WinResult.Stalemate)
-                            MessageBox.Show("The match ended in a stalemate");
-
-                        Form.ResetAll();
-                    }
-
-                    break;
+					break;
 				}
 
 				SelectedPiece = null;

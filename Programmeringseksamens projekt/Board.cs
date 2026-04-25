@@ -146,6 +146,31 @@ namespace Programmeringseksamens_projekt
 					return WinResult.Stalemate;
 			}
 
+			uint pieceCount = 0;
+			uint whiteKnightCount = 0;
+			uint blackKnightCount = 0;
+			uint bishopCount = 0;
+			foreach (Piece piece in Grid)
+			{
+				pieceCount += 1;
+				if (piece.Type == PieceType.Knight)
+				{
+					if (piece.Color == PieceColor.White) whiteKnightCount += 1;
+					else blackKnightCount += 1;
+				}
+				if (piece.Type == PieceType.Bishop) bishopCount += 1;
+			}
+
+			if (pieceCount == 2) return WinResult.Draw;
+
+			if (pieceCount == 3)
+			{
+				if (whiteKnightCount == 1 || blackKnightCount == 1) return WinResult.Draw;
+				if (bishopCount == 1) return WinResult.Draw;
+			}
+
+			if (pieceCount == 4 && (whiteKnightCount == 2 || blackKnightCount == 2)) return WinResult.Draw;
+
 			return WinResult.None;
 		}
 

@@ -8,7 +8,7 @@ namespace Programmeringseksamens_projekt
 {
 	public class Enums
 	{
-        public enum MessageType
+		public enum MessageType
 		{
 			Move,
 			Resign,
@@ -42,6 +42,7 @@ namespace Programmeringseksamens_projekt
 		public enum WinResult
 		{
 			None,
+			Draw,
 			WhiteWin,
 			BlackWin,
 			Stalemate,

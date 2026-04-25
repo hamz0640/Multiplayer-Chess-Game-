@@ -33,63 +33,63 @@ namespace Programmeringseksamens_projekt
 
 			IsConnected = true;
 
-            Debug.WriteLine("Client connected.");
+			Debug.WriteLine("Client connected.");
 			return;
 		}
 
 		public async Task<bool> Connect(string ip)
 		{
-            Client = new TcpClient();
+			Client = new TcpClient();
 
-            Task connectTask = Client.ConnectAsync(ip, 2026);
-            Task timeoutTask = Task.Delay(3000);
+			Task connectTask = Client.ConnectAsync(ip, 2026);
+			Task timeoutTask = Task.Delay(3000);
 
-            Task completed = await Task.WhenAny(connectTask, timeoutTask);
+			Task completed = await Task.WhenAny(connectTask, timeoutTask);
 
-            if (completed == timeoutTask)
-            {
-                Debug.Print("Timed out");
-                return false;
-            }
+			if (completed == timeoutTask)
+			{
+				Debug.Print("Timed out");
+				return false;
+			}
 
-            try
-            {
-                await connectTask;
+			try
+			{
+				await connectTask;
 
-                Stream = Client.GetStream();
-                IsStarted = true;
-                IsConnected = true;
+				Stream = Client.GetStream();
+				IsStarted = true;
+				IsConnected = true;
 
-                Debug.WriteLine("Connected to server.");
-                return true;
-            }
-            catch (SocketException)
-            {
-                Debug.WriteLine("Connection failed.");
-                return false;
-            }
-        }
+				Debug.WriteLine("Connected to server.");
+				return true;
+			}
+			catch (SocketException)
+			{
+				Debug.WriteLine("Connection failed.");
+				return false;
+			}
+		}
 
 		public async Task Close()
 		{
-            if (Stream != null)
-            {
-                Stream.Close();
-                Stream = null;
-            }
+			if (Stream != null)
+			{
+				Stream.Close();
+				Stream = null;
+			}
 
-            if (Client != null)
-            {
-                Client.Close();
-                Client = null;
-            }
+			if (Client != null)
+			{
+				Client.Close();
+				Client = null;
+			}
 
-            if (Listener != null)
-            {
-                Listener.Stop();
-                Listener = null;
-            }
-        }
+			if (Listener != null)
+			{
+				Listener.Stop();
+				Listener = null;
+			}
+		}
 
 		public async Task Send(byte[] data)
 		{
