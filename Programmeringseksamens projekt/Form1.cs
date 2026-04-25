@@ -37,10 +37,13 @@ namespace Programmeringseksamens_projekt
 		{
 			InitializeComponent();
 
+			moveList.View = View.Details;
 			moveList.Columns.Add("White");
-			moveList.Columns.Add("Black");            
-			
-			Board = new Board();
+			moveList.Columns.Add("Black");
+            moveList.Columns[0].Width = 85;
+            moveList.Columns[1].Width = 85;
+
+            Board = new Board();
 			Board.SetupStartingPosition();
 
 			Network = new Network();
@@ -263,18 +266,23 @@ namespace Programmeringseksamens_projekt
 
 		public void UpdateMoveList(Move move)
 		{
+			var fromChar = (char)(65 + move.From.col);
+			var fromNum = (move.From.row + 1).ToString();
+			var toChar = (char)(65 + move.To.col);
+			var toNum = (move.To.row + 1).ToString();
+
 			if (moveList.Items.Count == 0)
 			{
-				var newItem = new ListViewItem(move.From.ToString() + " -> " + move.To.ToString());
-				moveList.Items.Add(newItem);
+				var newItem = new ListViewItem(fromChar + fromNum + " to " + toChar + toNum);
+                moveList.Items.Add(newItem);
 			}
-			else if (moveList.Items[moveList.Items.Count - 1].SubItems[0] == null)
+			else if (moveList.Items[moveList.Items.Count - 1].SubItems.Count == 1)
 			{
-				moveList.Items[-1].SubItems.Add(move.From.ToString() + " -> " + move.To.ToString());
+				moveList.Items[moveList.Items.Count - 1].SubItems.Add(fromChar + fromNum + " to " + toChar + toNum);
 			}
 			else
 			{
-				var newItem = new ListViewItem(move.From.ToString() + " -> " + move.To.ToString());
+				var newItem = new ListViewItem(fromChar + fromNum + " to " + toChar + toNum);
 				moveList.Items.Add(newItem);
 			}
 		}

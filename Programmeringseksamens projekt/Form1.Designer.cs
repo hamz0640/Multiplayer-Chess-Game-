@@ -88,7 +88,7 @@
             this.ipEnterField.Location = new System.Drawing.Point(486, 42);
             this.ipEnterField.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.ipEnterField.Name = "ipEnterField";
-            this.ipEnterField.Size = new System.Drawing.Size(219, 21);
+            this.ipEnterField.Size = new System.Drawing.Size(219, 18);
             this.ipEnterField.TabIndex = 0;
             this.ipEnterField.Text = "127.0.0.1";
             // 
@@ -111,12 +111,14 @@
             // moveList
             // 
             this.moveList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.moveList.ForeColor = System.Drawing.SystemColors.Window;
             this.moveList.HideSelection = false;
             this.moveList.Location = new System.Drawing.Point(500, 213);
             this.moveList.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.moveList.Name = "moveList";
             this.moveList.Size = new System.Drawing.Size(192, 194);
             this.moveList.TabIndex = 5;
+            this.moveList.TileSize = new System.Drawing.Size(80, 20);
             this.moveList.UseCompatibleStateImageBehavior = false;
             // 
             // checkNetworkTimer
@@ -143,7 +145,7 @@
             this.label2.Location = new System.Drawing.Point(499, 184);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(159, 29);
+            this.label2.Size = new System.Drawing.Size(129, 24);
             this.label2.TabIndex = 7;
             this.label2.Text = "Move History";
             // 
@@ -185,7 +187,7 @@
             this.CurrentTurn.Location = new System.Drawing.Point(96, 59);
             this.CurrentTurn.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.CurrentTurn.Name = "CurrentTurn";
-            this.CurrentTurn.Size = new System.Drawing.Size(143, 24);
+            this.CurrentTurn.Size = new System.Drawing.Size(115, 18);
             this.CurrentTurn.TabIndex = 8;
             this.CurrentTurn.Text = "White to move";
             // 
@@ -198,7 +200,7 @@
             this.label1.Location = new System.Drawing.Point(674, 192);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(25, 18);
+            this.label1.Size = new System.Drawing.Size(21, 13);
             this.label1.TabIndex = 9;
             this.label1.Text = "?/?";
             // 
@@ -224,7 +226,7 @@
             this.label3.Location = new System.Drawing.Point(10, 59);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(64, 24);
+            this.label3.Size = new System.Drawing.Size(51, 18);
             this.label3.TabIndex = 13;
             this.label3.Text = "White";
             // 
@@ -236,7 +238,7 @@
             this.label4.Location = new System.Drawing.Point(10, 270);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(60, 24);
+            this.label4.Size = new System.Drawing.Size(48, 18);
             this.label4.TabIndex = 14;
             this.label4.Text = "Black";
             // 
@@ -365,7 +367,7 @@
             this.WpC.Location = new System.Drawing.Point(36, 105);
             this.WpC.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.WpC.Name = "WpC";
-            this.WpC.Size = new System.Drawing.Size(21, 13);
+            this.WpC.Size = new System.Drawing.Size(17, 12);
             this.WpC.TabIndex = 27;
             this.WpC.Text = "x0";
             // 
@@ -376,7 +378,7 @@
             this.BpC.Location = new System.Drawing.Point(36, 313);
             this.BpC.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.BpC.Name = "BpC";
-            this.BpC.Size = new System.Drawing.Size(21, 13);
+            this.BpC.Size = new System.Drawing.Size(17, 12);
             this.BpC.TabIndex = 28;
             this.BpC.Text = "x0";
             // 
@@ -387,7 +389,7 @@
             this.BnC.Location = new System.Drawing.Point(36, 343);
             this.BnC.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.BnC.Name = "BnC";
-            this.BnC.Size = new System.Drawing.Size(21, 13);
+            this.BnC.Size = new System.Drawing.Size(17, 12);
             this.BnC.TabIndex = 29;
             this.BnC.Text = "x0";
             // 
@@ -398,7 +400,7 @@
             this.BbC.Location = new System.Drawing.Point(36, 373);
             this.BbC.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.BbC.Name = "BbC";
-            this.BbC.Size = new System.Drawing.Size(21, 13);
+            this.BbC.Size = new System.Drawing.Size(17, 12);
             this.BbC.TabIndex = 30;
             this.BbC.Text = "x0";
             // 
@@ -409,7 +411,7 @@
             this.BrC.Location = new System.Drawing.Point(36, 404);
             this.BrC.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.BrC.Name = "BrC";
-            this.BrC.Size = new System.Drawing.Size(21, 13);
+            this.BrC.Size = new System.Drawing.Size(17, 12);
             this.BrC.TabIndex = 31;
             this.BrC.Text = "x0";
             // 
@@ -420,7 +422,7 @@
             this.BqC.Location = new System.Drawing.Point(36, 436);
             this.BqC.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.BqC.Name = "BqC";
-            this.BqC.Size = new System.Drawing.Size(21, 13);
+            this.BqC.Size = new System.Drawing.Size(17, 12);
             this.BqC.TabIndex = 32;
             this.BqC.Text = "x0";
             // 
@@ -431,7 +433,7 @@
             this.WnC.Location = new System.Drawing.Point(36, 135);
             this.WnC.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.WnC.Name = "WnC";
-            this.WnC.Size = new System.Drawing.Size(21, 13);
+            this.WnC.Size = new System.Drawing.Size(17, 12);
             this.WnC.TabIndex = 33;
             this.WnC.Text = "x0";
             // 
@@ -442,7 +444,7 @@
             this.WbC.Location = new System.Drawing.Point(36, 166);
             this.WbC.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.WbC.Name = "WbC";
-            this.WbC.Size = new System.Drawing.Size(21, 13);
+            this.WbC.Size = new System.Drawing.Size(17, 12);
             this.WbC.TabIndex = 34;
             this.WbC.Text = "x0";
             // 
@@ -453,7 +455,7 @@
             this.WrC.Location = new System.Drawing.Point(36, 197);
             this.WrC.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.WrC.Name = "WrC";
-            this.WrC.Size = new System.Drawing.Size(21, 13);
+            this.WrC.Size = new System.Drawing.Size(17, 12);
             this.WrC.TabIndex = 35;
             this.WrC.Text = "x0";
             // 
@@ -464,13 +466,13 @@
             this.WqC.Location = new System.Drawing.Point(36, 229);
             this.WqC.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.WqC.Name = "WqC";
-            this.WqC.Size = new System.Drawing.Size(21, 13);
+            this.WqC.Size = new System.Drawing.Size(17, 12);
             this.WqC.TabIndex = 36;
             this.WqC.Text = "x0";
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(5F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
             this.ClientSize = new System.Drawing.Size(732, 485);
