@@ -220,7 +220,9 @@ namespace Programmeringseksamens_projekt
 			WbC.Text = "x0";
 			WrC.Text = "x0";
 			WqC.Text = "x0";
-		} 
+
+			moveList.Items.Clear();
+        } 
 
 		public void ShowCapturedPieces()
 		{
