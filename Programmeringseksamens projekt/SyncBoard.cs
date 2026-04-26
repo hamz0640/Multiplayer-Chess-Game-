@@ -124,12 +124,12 @@ namespace Programmeringseksamens_projekt
 
 			piece.BackColor = GetSquareColor(move.To);
 
-			if (move.Type == Enums.MoveType.CastlingKingside)
-			{
-				(int, int) rookFromPosition = move.To.row == 0 ? (7, 7) : (0, 7);
-				(int, int) rookToPosition = move.To.row == 0 ? (7, 5) : (0, 5);
+            if (move.Type == Enums.MoveType.CastlingKingside)
+            {
+                (int, int) rookFromPosition = move.To.row == 0 ? (0, 7) : (7, 7);  
+                (int, int) rookToPosition = move.To.row == 0 ? (0, 5) : (7, 5);
 
-				PictureBox rook = Pieces[rookFromPosition];
+                PictureBox rook = Pieces[rookFromPosition];
 				PlaceVisually(rook, rookToPosition);
 				Pieces[rookToPosition] = rook;
 				Pieces.Remove(rookFromPosition);
@@ -137,8 +137,8 @@ namespace Programmeringseksamens_projekt
 
 			if (move.Type == Enums.MoveType.CastlingQueenside)
 			{
-				(int, int) rookFromPosition = move.To.row == 0 ? (7, 0) : (0, 0);
-				(int, int) rookToPosition = move.To.row == 0 ? (7, 3) : (0, 3);
+				(int, int) rookFromPosition = move.To.row == 0 ? (0, 0) : (7, 0);
+				(int, int) rookToPosition = move.To.row == 0 ? (0, 3) : (7, 3);
 
 				PictureBox rook = Pieces[rookFromPosition];
 				PlaceVisually(rook, rookToPosition);
